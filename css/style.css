@@ -1,0 +1,114 @@
+body{
+    margin: 0;
+}
+header{
+    display: grid;
+    background-color: #F3a918;
+    height: 6em;
+    grid-template-columns: 5fr 3fr;
+}
+
+header h3{
+    cursor: pointer;
+    margin: 0;
+}
+
+img{
+    width: 4em;
+    height: 4em;
+    padding-right: 1.5em;
+    padding-left: 5em;
+}
+
+#logo{
+    grid-column-start: 1;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+
+}
+
+#logo h3{
+    width: 4em;
+    text-align: center;
+}
+
+#menu{
+    grid-column-start: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 6em;
+}
+
+
+h1{
+    margin-left: 1.5em;
+}
+
+form{
+    margin: 10em 0 10em 10em;
+    border-style: solid;
+    border-radius: 25px;
+    width: 40em;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+    padding: 1.5em 1.5em 1em 1.5em;
+    justify-content: center;
+}
+
+button {
+    background-color: #bf3100;
+    border: solid;
+    color: white;
+    padding: 12px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: flex-end;
+    margin: 0;
+    border-radius: 25px;
+}
+input {
+    height: 2em;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(183, 180, 174, 0.805);
+    width: 40em;
+}
+
+form label:nth-child(1) input{
+    margin-left: 2em;
+ 
+  }
+
+  form label:nth-child(2) input{
+    margin-left: 6em;
+}
+
+form h4{
+    margin: 0;
+}
+
+footer{
+    background-color: black;
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    position:absolute;
+    bottom:0;
+    min-width: 100%;
+}
+footer p{
+    margin: 0;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
