@@ -1,5 +1,8 @@
 body{
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 header{
     display: grid;
@@ -13,7 +16,7 @@ header h3{
     margin: 0;
 }
 
-img{
+header img{
     width: 4em;
     height: 4em;
     padding-right: 1.5em;
@@ -43,51 +46,75 @@ img{
 
 
 h1{
+    margin: 0;
     margin-left: 1.5em;
 }
 
 form{
-    margin: 10em 0 10em 10em;
     border-style: solid;
     border-radius: 25px;
-    width: 40em;
-    display: flex;
-    flex-direction: column;
-    row-gap: 1em;
-    padding: 1.5em 1.5em 1em 1.5em;
-    justify-content: center;
+    width: 30em;
+    display: grid;
+    padding: 1.5em;
+    grid-template-rows: 3em 3em 3em;
+    grid-template-columns: 3fr 1fr;
 }
 
-button {
+form button {
     background-color: #bf3100;
     border: solid;
     color: white;
     padding: 12px 30px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     cursor: pointer;
-    align-self: flex-end;
     margin: 0;
     border-radius: 25px;
+    grid-row-start: 3;
+    grid-column-start: 2;
 }
+
 input {
-    height: 2em;
+    height: 3em;
     border-radius: 25px;
     border-style: solid;
     border-width: 1px;
     border-color: rgba(183, 180, 174, 0.805);
-    width: 40em;
+    width: 30em;
+}
+
+form label {
+    font-size: larger;
 }
 
 form label:nth-child(1) input{
-    margin-left: 2em;
- 
-  }
+    margin-left: 4.3em; 
+}
 
-  form label:nth-child(2) input{
-    margin-left: 6em;
+form label:nth-child(1){
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+}
+
+
+form label:nth-child(2) input{
+    margin-left: 4.5em;
+}
+
+form label:nth-child(2){
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+
+}
+
+.hamburger{
+    grid-row-start: 3;
+    grid-column-start: 1;
+    padding-top: 1em;
+    padding-left: 3em;
 }
 
 form h4{
@@ -99,8 +126,6 @@ footer{
     text-align: center;
     padding-top: 1em;
     padding-bottom: 1em;
-    position:absolute;
-    bottom:0;
     min-width: 100%;
 }
 footer p{
@@ -108,7 +133,42 @@ footer p{
     color: white;
 }
 
+#hamburger {
+    display: none;
+}
+
+
 a {
     text-decoration: none;
     color: black;
 }
+
+main{
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bigLogo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    border-style: solid;
+    padding: 1em 3em 1em 3em;
+    border-radius: 5em;
+}
+
+#bigLogo h2{
+    width: 4em;
+    text-align: center;
+}
+
+#bigLogo h2, #bigLogo h4{
+    margin: 0;
+    margin-top: 2px;
+}
+

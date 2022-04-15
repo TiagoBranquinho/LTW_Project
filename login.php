@@ -3,13 +3,17 @@
     output_header();
 ?>
 <h1>Login</h1>
-        <form action="action_login.php" method="POST">
-            <label>Username/Email:
+<main>
+            <form action="action_login.php" method="POST">
+            <label><strong>Username:</strong>
                 <input type="text" name="username">
             </label>
-            <label>Password:
+            <label><strong>Password:</strong>
                 <input type="password" name="password">
             </label>
-            <button type="submit">Log in</button>
+            <input type="checkbox" id="hamburger"> 
+            <label class="hamburger" for="hamburger">Forgot your password</label>
+            <button type="submit">Login</button>
         </form>
+</main>
         <?php output_footer();?>
