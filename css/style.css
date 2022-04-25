@@ -1,8 +1,10 @@
+
+html{
+    height: 100%;
+}
 body{
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    height: 100%;
 }
 header{
     display: grid;
@@ -58,6 +60,8 @@ form{
     padding: 1.5em;
     grid-template-rows: 3em 3em 3em;
     grid-template-columns: 3fr 1fr;
+    margin: auto;
+    margin-top: 10em;
 }
 
 form button {
@@ -110,15 +114,18 @@ form label:nth-child(2){
 
 }
 
-.hamburger{
+form label:nth-child(3){
     grid-row-start: 3;
     grid-column-start: 1;
     padding-top: 1em;
-    padding-left: 3em;
+    padding-left: 2em;
+    opacity: 70%;
 }
 
-form h4{
-    margin: 0;
+
+
+form h5{
+    margin-left: 3em;
 }
 
 footer{
@@ -127,16 +134,13 @@ footer{
     padding-top: 1em;
     padding-bottom: 1em;
     min-width: 100%;
+    bottom: 0;
+    position: absolute;
 }
 footer p{
     margin: 0;
     color: white;
 }
-
-#hamburger {
-    display: none;
-}
-
 
 a {
     text-decoration: none;
@@ -144,22 +148,18 @@ a {
 }
 
 main{
-    height: 100vh;
     padding: 0;
     margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #bigLogo{
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-items: center;
+    align-items: center;
     border-style: solid;
-    padding: 1em 3em 1em 3em;
-    border-radius: 5em;
+    border-radius: 50%;
+    padding: 2em 4em 2em 4em;
 }
 
 #bigLogo h2{
@@ -172,3 +172,32 @@ main{
     margin-top: 2px;
 }
 
+main > h1{
+    margin: 1em;
+}
+
+main > h5{
+    margin-left: 45em;
+    margin-top: 1em;
+}
+
+h5 a{
+    text-decoration: underline;
+    color: red;
+}
+
+ #welcome{
+     margin-top: 10em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#search{
+    padding-top: 2em;
+    padding-right: 3em;
+}
+
+#search h1{
+    margin-bottom: 2em;
+}
