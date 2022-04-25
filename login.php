@@ -1,5 +1,5 @@
 <?php 
-    include_once('templates/common.php');
+    include_once('templates/common.tpl.php');
     output_header();
 ?>
 <main>
