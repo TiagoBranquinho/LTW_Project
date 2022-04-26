@@ -78,7 +78,7 @@ CREATE TABLE FavouriteRestaurant
 );
 
 
-INSERT INTO User VALUES("alex", "9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684", "email", "rua sesamo", 91239192, false, true);
+INSERT INTO User VALUES("alex", "9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684", "email", "rua sesamo", "91239192", false, true);
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;

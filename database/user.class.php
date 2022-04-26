@@ -37,14 +37,19 @@
     }
 
     static function registerUser(PDO $db, string $username, string $password, string $email, string $address, string $phoneNumber, bool $restaurantOwner, bool $customer) {
-      $stmt = $db->prepare('SELECT count(*) FROM User WHERE username = ?');
-      $stmt->execute(array($username));
-      $userCount = $stmt->fetch();
-      if(userCount) return false;
+      $stmt = $db->prepare("SELECT * FROM user WHERE user.username = ?");
+      $stmt->execute([$username]);
+      $user = $stmt->fetch();
 
-      $stmt = $db->prepare('INSERT INTO User VALUES(?,?,?,?,?,?,?)');
-      $stmt->execute(array($username, sha1($password), $email, $address, $phoneNumber, $restaurantOwner, $customer));
-      return true;
+      if($user){
+          return false;
+      }
+      else{
+        echo "conta disponivel";
+        $stmt = $db->prepare('INSERT INTO User VALUES(?,?,?,?,?,?,?)');
+        $stmt->execute(array($username, sha1($password), $email, $address, $phoneNumber, $restaurantOwner?1:0, $customer?1:0));
+        return true;
+      }
     }
   }
 ?>
