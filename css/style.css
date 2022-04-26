@@ -2,15 +2,31 @@
 html{
     height: 100%;
 }
-body{
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
-    height: 100%;
 }
+
 header{
     display: grid;
     background-color: #F3a918;
     height: 6em;
     grid-template-columns: 5fr 3fr;
+}
+  
+header, footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+  }
+  
+main {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
 }
 
 header h3{
@@ -52,19 +68,19 @@ h1{
     margin-left: 1.5em;
 }
 
-main > form{
+main > .login{
     border-style: solid;
     border-radius: 25px;
     width: 30em;
     display: grid;
     padding: 1.5em;
-    grid-template-rows: 3em 3em 3em;
+    grid-template-rows: 4em 4em 4em;
     grid-template-columns: 3fr 1fr;
     margin: auto;
     margin-top: 10em;
 }
 
-form button {
+button, .restaurant a{
     background-color: #bf3100;
     border: solid;
     color: white;
@@ -75,6 +91,11 @@ form button {
     cursor: pointer;
     margin: 0;
     border-radius: 25px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.login button{
     grid-row-start: 3;
     grid-column-start: 2;
 }
@@ -88,33 +109,33 @@ input {
     width: 30em;
 }
 
-form label {
+main > .login label {
     font-size: larger;
 }
 
-form label:nth-child(1) input{
+main > .login label:nth-child(1) input{
     margin-left: 4.3em; 
 }
 
-form label:nth-child(1){
+main > .login label:nth-child(1){
     grid-row-start: 1;
     grid-column-start: 1;
     grid-column-end: span 2;
 }
 
 
-form label:nth-child(2) input{
+main > .login label:nth-child(2) input{
     margin-left: 4.5em;
 }
 
-form label:nth-child(2){
+main > .login label:nth-child(2){
     grid-row-start: 2;
     grid-column-start: 1;
     grid-column-end: span 2;
 
 }
 
-form label:nth-child(3){
+main > .login label:nth-child(3){
     grid-row-start: 3;
     grid-column-start: 1;
     padding-top: 1em;
@@ -124,8 +145,8 @@ form label:nth-child(3){
 
 
 
-form h5{
-    margin-left: 3em;
+main > .login h5{
+    margin: 1em 0 0 3em;
 }
 
 footer{
@@ -134,8 +155,6 @@ footer{
     padding-top: 1em;
     padding-bottom: 1em;
     min-width: 100%;
-    bottom: 0;
-    position: absolute;
 }
 footer p{
     margin: 0;
@@ -149,7 +168,7 @@ a {
 
 main{
     padding: 0;
-    margin: 0;
+    margin: 0 4em 0 4em;
 }
 
 #bigLogo{
@@ -201,4 +220,116 @@ h5 a{
 
 #search h1{
     margin-bottom: 2em;
+}
+
+.restaurantCategory{
+    display: flex;
+    margin: 3em 8em 3em 0;
+}
+
+.restaurantCategory h4{
+    margin: 0 1em 0 0;
+    
+}
+
+.restaurantCategory h1{
+    flex-grow: 1;
+}
+
+.restaurantCategory *{
+    align-self: center;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0rem;
+    margin-top: 0rem;
+    margin-bottom: 0em;
+}
+
+#restaurants li{
+    text-align: center;
+    padding: 2em;
+    border: 2px;
+    border-style: solid;
+    border-color: #bf3100;
+    border-radius: 25px;
+    margin-bottom: 2em;
+}
+
+.restaurant{
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
+.restaurant #name{
+    grid-column-start: 1;
+    align-content: center;
+    justify-content: space-around;
+    margin-top: 0;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.restaurant #name h3,h4,h5{
+    margin: 0;
+}
+
+.restaurant #images{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin: 0 5em 0 5em;
+}
+
+.restaurant #images *{
+    width: 240px;
+    height: 170px;
+}
+
+.restaurant #buttons a{
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+
+.restaurant #buttons{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content:space-around;
+    grid-column-start: 3;
+    grid-column-end: 3;
+    height: auto;
+}
+
+.restaurant #buttons a{
+    width: auto;
+}
+
+.payment{
+    display: grid;
+    row-gap: 2em;
+    margin-top: 1em;
+}
+
+.payment h2{
+    justify-self: center;
+}
+
+.payment ul{
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    width: 30em;
+    justify-content: space-around;
+}
+
+.payment input{
+    width: fit-content;
+    height: fit-content;
 }

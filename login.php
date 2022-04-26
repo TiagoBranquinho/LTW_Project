@@ -5,7 +5,7 @@
 <main>
 <h1>Login</h1>
 
-            <form action="action_login.php" method="POST">
+            <form class="login" action="action_login.php" method="POST">
             <label><strong>Username:</strong>
                 <input type="text" name="username">
             </label>
