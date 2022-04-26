@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     include_once('templates/common.tpl.php');
     output_header();
 ?>
