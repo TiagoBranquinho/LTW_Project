@@ -364,3 +364,95 @@ ul{
   .slider.round:before {
     border-radius: 50%;
   }
+.payment input{
+    width: fit-content;
+    height: fit-content;
+}
+
+.register {
+    border-style: solid;
+    border-radius: 25px;
+    width: 30em;
+    display: grid;
+    padding: 1.5em;
+    grid-template-rows: 4em 4em 4em 4em 4em;
+    grid-template-columns: 3fr 1fr;
+    margin: auto;
+    margin-top: 10em;
+    margin-bottom: 10em;
+}
+
+.register #option1, #option2{
+    height: 13px;
+    width: 13px;
+}
+
+.register input{
+    height: 3em;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(183, 180, 174, 0.805);
+    width: auto;
+    padding-left: 1em;
+}
+
+.register input:nth-child(1){
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+}
+
+.register input:nth-child(2){
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+}
+.register input:nth-child(3){
+    grid-row-start: 3;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+}
+.register input:nth-child(4){
+    grid-row-start: 4;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+}
+.register input:nth-child(5){
+    grid-row-start: 5;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+}
+.register input#option1{
+    grid-row-start: 6;
+    grid-column-start: 1;
+    grid-column-end: span 1;
+}
+
+.register input#option2{
+    grid-row-start: 7;
+    grid-column-start: 1;
+    grid-column-end: span 1;
+}
+
+.register label{
+    margin-left: 1.5em;
+}
+
+.register label:nth-of-type(1){
+    grid-row-start: 6;
+    grid-column-start: 1;
+    grid-column-end: span 1;
+}
+
+.register label:nth-of-type(2){
+    grid-row-start: 7;
+    grid-column-start: 1;
+    grid-column-end: span 1;
+}
+
+.register button{
+    grid-row-start: 8;
+    grid-column-start: 2;
+    grid-column-end: span 1;
+}

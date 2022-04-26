@@ -14,7 +14,7 @@
                 <input type="password" name="password" placeholder="password">
             </label>
             <h5>Forgotten your password? Click <a>here</a> </h5>
-            <button formaction="action_login.php" formmethod="post">Login</button>
+            <button type="submit">Login</button>
         </form>
         <h5> Dont have an account yet? Create one <a href = "register.php">here</a></h5>
 </main>
