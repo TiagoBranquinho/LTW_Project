@@ -6,6 +6,7 @@
                 <meta charset="UTF-8">
                 <link href="../css/style.css" rel="stylesheet">
                 <link href="../css/responsive.css" rel="stylesheet">
+                <script src="script.js" defer></script>
 
             </head>
             <body>
