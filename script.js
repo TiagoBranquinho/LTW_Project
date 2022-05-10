@@ -12,7 +12,4 @@ document.body.addEventListener('click', (e) => {
         found = 1;
       }
   }  
-  if(!found){
-    checkboxes[0].checked = true;
-  }
 })
