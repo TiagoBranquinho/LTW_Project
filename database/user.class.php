@@ -1,5 +1,6 @@
 <?php
   declare(strict_types = 1);
+  include_once('database/connection.db.php');
 
   class User {
     public string $username;
@@ -36,6 +37,23 @@
         else return null;
     }
 
+    static function getUser(PDO $db, string $username){
+      $stmt = $db->prepare('SELECT * FROM User WHERE lower(username) = ?');
+      $stmt->execute(array(strtolower($username)));
+  
+      if ($user = $stmt->fetch()){
+          return new User(
+              $user['username'],
+              $user['email'],
+              $user['address'],
+              $user['phoneNumber'],
+              $user['restaurantOwner']?true:false,
+              $user['customer']?true:false
+          );
+      }
+      else return null;
+  }
+
     static function registerUser(PDO $db, string $username, string $password, string $email, string $address, string $phoneNumber, bool $restaurantOwner, bool $customer) {
       $stmt = $db->prepare("SELECT * FROM user WHERE user.username = ?");
       $stmt->execute([$username]);
@@ -50,6 +68,11 @@
         $stmt->execute(array($username, sha1($password), $email, $address, $phoneNumber, $restaurantOwner?1:0, $customer?1:0));
         return true;
       }
+    }
+
+    static function editUser(PDO $db, User $user) {
+      $stmt = $db->prepare("UPDATE User SET email = ?, address = ?, phoneNumber = ? WHERE user.username = ?");
+      $stmt->execute([$user->email, $user->address, $user->phoneNumber, $user->username]);
     }
   }
 ?>

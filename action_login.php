@@ -11,8 +11,9 @@
 
   if ($user) {
     $_SESSION['username'] = $user->username;
+    header('Location: user.php');
   }
-
-  echo "Welcome ". $_SESSION['username'] . " to Food Center! ";
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  else{
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+  }
 ?>

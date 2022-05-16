@@ -6,9 +6,9 @@
     <form class="payment" action="action_payment.php" method="POST">
         <h2>Payment Method</h2>
         <h3>Monetary<small> (default)</small></h3>
-        <input type="checkbox" name="payment" value="money" checked>
+        <input type="radio" name="payment" value="money" checked="checked">
         <h3>Credit Card</h3>
-        <input type="checkbox" name="payment" value="card">
+        <input type="radio" name="payment" value="card">
         <label><strong>Titular name:</strong>
             <input type="text" name="titular">
         </label>
