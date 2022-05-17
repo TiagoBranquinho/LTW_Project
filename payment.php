@@ -3,7 +3,7 @@
     output_header();
 ?>
 <main>
-    <form class="payment" action="action_payment.php" method="POST">
+    <form class="payment" action="action_payment.php" method="GET">
         <h1>Payment Method</h1>
         <h3>Credit Card</h3>
         <label class="switch">
@@ -22,6 +22,7 @@
         <label class="hidden"><strong>CVC:</strong>
             <input type="password" name="cvc">
         </label>
+        <input type="hidden" name = "card" value="false">
         <button type="submit">Pay with Money</button>
     </form>
 </main>
