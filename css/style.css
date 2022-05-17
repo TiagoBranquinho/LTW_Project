@@ -313,68 +313,6 @@ ul{
     width: auto;
 }
 
-.payment{
-    display: grid;
-    grid-template-rows: 10em repeat(4,5em);
-    grid-template-columns: 20em 10em 17em 5em;
-    margin: 5em 5em 5em 15em;
-}
-
-.payment h2{
-    grid-row-start: 1;
-}
-
-.payment input, .payment h3{
-    grid-row-start: 2;
-    margin: 0em;
-    width: fit-content;
-}
-
-.payment h3:first-of-type{
-    grid-column-start: 1;
-}
-
-.payment h3:nth-of-type(2){
-    grid-column-start: 3;
-}
-
-.payment input:nth-of-type(1){
-    grid-column-start: 2;
-}
-
-.payment input:nth-of-type(2){
-    grid-column-start: 5;
-}
-
-
-.payment label:nth-of-type(1){
-    grid-row-start: 3;
-    grid-column-start: 1;
-}
-
-.payment li input{
-    width: fit-content;
-    margin: 0;
-}
-
-.payment label:nth-of-type(2){
-    grid-row-start: 3;
-    grid-column-start: 3;
-}
-
-.payment label:nth-of-type(3){
-    grid-row-start: 4;
-}
-
-.payment label:nth-of-type(4){
-    grid-row-start: 4;
-    grid-column-start: 3;
-}
-
-.payment button{
-    grid-row-start: 5;
-    grid-column-start: 2;
-}
 
 .register {
     border-style: solid;
@@ -464,7 +402,7 @@ ul{
     grid-column-end: span 1;
 }
 
-.userdata, .edituser{
+.userdata, .edituser, .payment{
     display: flex;
     flex-wrap: wrap;
     row-gap: 2em;
@@ -473,12 +411,41 @@ ul{
     margin-top: 5em;
 }
 
-.userdata > *, .edituser > *:not(button){
+.userdata > *, .edituser > *:not(button), .payment > *:not(.switch, h3, h1, button){
     width: 50%;
     box-sizing: border-box;
     text-align: center;
 }
 
-.userdata > h1, .userdata > h4:nth-of-type(5), .edituser h1, .edituser > label:nth-of-type(5){
+.userdata > h1, .userdata > h4:nth-of-type(5), .edituser h1, .edituser > label:nth-of-type(5), .payment h1, .payment label:last-of-type{
     width: 100%;
 }
+
+
+
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }

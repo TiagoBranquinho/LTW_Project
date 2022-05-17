@@ -4,24 +4,25 @@
 ?>
 <main>
     <form class="payment" action="action_payment.php" method="POST">
-        <h2>Payment Method</h2>
-        <h3>Monetary<small> (default)</small></h3>
-        <input type="radio" name="payment" value="money" checked="checked">
+        <h1>Payment Method</h1>
         <h3>Credit Card</h3>
-        <input type="radio" name="payment" value="card">
-        <label><strong>Titular name:</strong>
-            <input type="text" name="titular">
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
         </label>
-        <label><strong>Card number:</strong>
+        <label class="hidden"><strong>Titular name:</strong>
+            <input type="text" name="titular" id="aa">
+        </label>
+        <label class="hidden"><strong>Card number:</strong>
             <input type="text" name="number">
         </label>
-        <label><strong>Expiry Date:</strong>
+        <label class="hidden"><strong>Expiry Date:</strong>
             <input type="date" name="date">
         </label>
-        <label><strong>CVC:</strong>
+        <label class="hidden"><strong>CVC:</strong>
             <input type="password" name="cvc">
         </label>
-        <button type="submit">Pay with</button>
+        <button type="submit">Pay with Money</button>
     </form>
 </main>
 <?php output_footer();?>
