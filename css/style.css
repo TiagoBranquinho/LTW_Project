@@ -470,11 +470,13 @@ ul{
     row-gap: 2em;
     place-self: center;
     place-content: center;
+    margin-top: 5em;
 }
 
 .userdata > *, .edituser > *:not(button){
     width: 50%;
     box-sizing: border-box;
+    text-align: center;
 }
 
 .userdata > h1, .userdata > h4:nth-of-type(5), .edituser h1, .edituser > label:nth-of-type(5){
