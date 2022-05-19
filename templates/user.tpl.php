@@ -12,6 +12,7 @@
         <?php echo '<h4>Phone number: ' . $user->phoneNumber . '</h4>';?>
         <?php echo '<h4>Address: ' . $user->address . '</h4>';?>
         <a href="edit_user.php">Edit</a>
+        <a href="change_password.php">Change Password</a>
     </div>
 </main>
 <?php } ;?>
