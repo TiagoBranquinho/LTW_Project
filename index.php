@@ -1,6 +1,8 @@
-<?php 
+<?php
+    
     session_start();
     include_once('templates/common.tpl.php');
+    include_once('database/image.class.php');
     output_header();
 ?>
 <main>

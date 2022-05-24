@@ -6,6 +6,7 @@
 <main>
     <h1>Registration</h1>
     <a href="payment.php"><h1>PAYMENT METHOD</h1></a>
+    <a href="order.php"><h1>ORDER PAGE</h1></a>
     <form class="register" action="action_register.php" method="POST">
         <input type="text" name="username" placeholder="username" pattern="^[A-Za-z][A-Za-z0-9_]{2,}$" title="Minimum 3 characters, start with an alphabet and all other characters can be alphabets, numbers or an underscore">
         <input type="password" name="password" placeholder="password" pattern="^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$" title="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number">
