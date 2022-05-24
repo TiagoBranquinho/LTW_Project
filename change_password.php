@@ -8,6 +8,7 @@
 ?>
 <main>
     <h1>Change Password</h1>
+    <script src="../scripts/changePass.js" defer></script>
     <form class="changepassword" action="action_changepass.php" method="POST">
         <label><strong>New Password:</strong>
             <input type="password" id="newPass" name="newPass" required="true" pattern="^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$" title="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number">
