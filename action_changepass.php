@@ -6,13 +6,7 @@
   include_once('database/user.class.php');
 
   $db = getDatabaseConnection();
-
   $user = User::getUser($db, $_SESSION['username']);
-  $user->email = $_POST['email'];
-  $user->address = $_POST['address'];
-  $user->phoneNumber = $_POST['tel'];
-
-  User::editUser($db, $user);
-
+  $user->changePass($db, sha1($_POST['newPass']));  
   header('Location: user.php');
 ?>
