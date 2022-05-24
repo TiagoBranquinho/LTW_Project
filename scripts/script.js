@@ -34,6 +34,7 @@ function paymentMenuSlide(){
         }
       })
 }
+
 function executeScript(){
     paymentMenuSlide();
 }

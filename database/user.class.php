@@ -19,6 +19,18 @@
       $this->restaurantOwner = $restaurantOwner;
       $this->customer = $customer;
     }
+    
+    function getPassword(PDO $db){
+      $stmt = $db->prepare('SELECT password from user.password where username = ?');
+      $stmt->execute([$username]);
+      $pass = $stmt->fecth();
+      return pass;
+    }
+
+    public function changePass(PDO $db, string $newPass){
+      $stmt = $db->prepare("UPDATE User SET password = ? WHERE username = ?");
+      $stmt->execute([$newPass, $this->username]);
+    }
 
     static function getUserWithPassword(PDO $db, string $username, string $password){
         $stmt = $db->prepare('SELECT * FROM User WHERE lower(username) = ? AND password = ?');

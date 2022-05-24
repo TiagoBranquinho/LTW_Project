@@ -422,6 +422,29 @@ ul{
 }
 
 
+.changepassword{
+    display: flex;
+    flex-flow: column;
+    row-gap: 2em;
+    place-self: center;
+    place-content: center;
+    margin-top: 5em;
+}
+
+.changepassword h1{
+    margin: 0ch;
+}
+
+.changepassword label{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    align-self:flex-end;
+}
+
+.changepassword h1{
+    margin: 0;
+}
 
 
 /* The switch - the box around the slider */
