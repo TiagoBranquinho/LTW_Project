@@ -11,6 +11,7 @@
                 <link href="../css/style.css" rel="stylesheet">
                 <link href="../css/restaurant.css" rel="stylesheet">
                 <link href="../css/responsive.css" rel="stylesheet">
+                <link href="../css/order.css" rel="stylesheet">
                 <script src="../scripts/script.js" defer></script>
 
             </head>
