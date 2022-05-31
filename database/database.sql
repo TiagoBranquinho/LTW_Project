@@ -34,11 +34,13 @@ CREATE TABLE Restaurant
 
 CREATE TABLE Orders
 (
-  orderID       integer PRIMARY KEY ,
+  orderID       integer ,
   state         NVARCHAR(50) NOT NULL ,
   restaurantID  integer CONSTRAINT fk_order_restaurant REFERENCES Restaurant (restaurantID) ,
   dishID        integer CONSTRAINT fk_order_dish REFERENCES Dish (dishID) ,
-  username      NVARCHAR(120) CONSTRAINT fk_order_username REFERENCES User (username)
+  quantity      integer NOT NULL,
+  username      NVARCHAR(120) CONSTRAINT fk_order_username REFERENCES User (username),
+  PRIMARY KEY(orderID, restaurantID)
 );
 
 CREATE TABLE Dish
