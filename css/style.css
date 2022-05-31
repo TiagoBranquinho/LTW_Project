@@ -29,6 +29,8 @@ main {
     flex-basis: auto;
     display: flex;
     flex-direction: column;
+    padding: 0;
+    margin: 0 5em 0 5em;
 }
 
 header h3{
@@ -82,7 +84,7 @@ main > .login{
     margin-top: 10em;
 }
 
-button, .restaurant a, .userdata a{
+button, .restaurant #buttons a, .userdata a{
     background-color: #bf3100;
     border: solid;
     color: white;
@@ -168,11 +170,6 @@ a {
     color: black;
 }
 
-main{
-    padding: 0;
-    margin: 0 4em 0 4em;
-}
-
 #bigLogo{
     display: flex;
     flex-direction: column;
@@ -195,7 +192,7 @@ main{
 }
 
 main > h1{
-    margin: 1em;
+    margin: 1em 1em 1em 0;
 }
 
 main > h5{

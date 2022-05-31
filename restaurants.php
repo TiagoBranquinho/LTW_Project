@@ -18,7 +18,7 @@
     <li>
     <article class="restaurant">
     <section id="name">
-    <h3>KFC Circunvelação</h3>
+    <?php echo "<a href='restaurant.php?id=1'><h3>KFC Circunvelação</h3></a>";?>
         <h4>Category: Fast Food</h4>
         <h5>Rua do ze</h5>
         </section>
@@ -29,7 +29,7 @@
         </section>
         <section id="buttons">
         <a>Order Now</a>
-        <a>Menu</a>
+        <?php echo "<a href='restaurant.php?id=1'>Menu</a>";?>
         </section>
         </article>
     </li>

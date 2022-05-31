@@ -53,3 +53,8 @@ input:focus{
     transition: 1s;
     visibility: 1;
 }
+
+article img{
+  height: auto;
+  width: 100%;
+}
