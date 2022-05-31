@@ -39,10 +39,8 @@
     padding: 1px 4px 1px 4px;
 }
 
-.restaurantDishes input{
+.restaurantDishes article section:nth-child(3) h4{
     width: 5em;
-    border: 0;
-    text-align: center;
 }
 
 .restaurantDishes article{
@@ -83,4 +81,23 @@
     grid-row-end: 2;
     grid-column-start: 1;
     grid-column-end: -1;
+    display: flex;
+    justify-content: center;
+}
+
+.restaurantDishes > div{
+    display: flex;
+    width: 100%;
+    margin: 2em 0em 3em 3em;
+    justify-content: space-around;
+}
+
+.restaurantDishes > h3{
+    margin: 0;
+    text-align: center;
+    height: fit-content;
+}
+
+.restaurantDishes > div button{
+    padding: 20px 30px;
 }

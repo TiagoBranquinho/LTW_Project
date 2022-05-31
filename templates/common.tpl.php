@@ -13,6 +13,9 @@
                 <link href="../css/responsive.css" rel="stylesheet">
                 <link href="../css/order.css" rel="stylesheet">
                 <script src="../scripts/script.js" defer></script>
+                <script src="../scripts/changePass.js" defer></script>
+                <script src="../scripts/restaurantOrder.js" defer></script>
+
 
             </head>
             <body>

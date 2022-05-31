@@ -22,54 +22,71 @@
     </select>
     </form>
     </div>
-    <div class="restaurantDishes">
+    <form class="restaurantDishes">
         <article>
-            <section id="name">
+            <section>
                 <h4>Streetwise Two</h4>
                 <h4>Category: Chicken</h4>
-                <h4>Price: 3,99$</h5>
+                <div class="price">
+                    <h4>Price: </h4>
+                    <h4 class="value">3,99</h4>
+                </div>
             </section>
             <section>
                 <img src="https://picsum.photos/200/160" alt="logopic">
             </section>
             <section>
-                <button>-</button>
-                <input type="text" value="0">
-                <button>+</button>
+                <button type="button">-</button>
+                <h4>0</h4>
+                <input type="hidden">
+                <button type="button">+</button>
             </section>
         </article>
         <article>
             <section>
                 <h4>Streetwise Two</h4>
                 <h4>Category: Chicken</h4>
-                <h4>Price: 3,99$</h5>
+                <div class="price">
+                    <h4>Price: </h4>
+                    <h4 class="value">3,99</h4>
+                </div>
             </section>
             <section>
                 <img src="https://picsum.photos/200/160" alt="logopic">
             </section>
             <section>
-                <button>-</button>
-                <input type="text" value="0">
-                <button>+</button>
+                <button type="button">-</button>
+                <h4>0</h4>
+                <input type="hidden">
+                <button type="button">+</button>
             </section>
         </article>
         <article>
-            <section id="name">
+            <section>
                 <h4>Streetwise Two</h4>
                 <h4>Category: Chicken</h4>
-                <h4>Price: 3,99$</h5>
+                <div class="price">
+                    <h4>Price: </h4>
+                    <h4 class="value">3,99</h4>
+                </div>
             </section>
             <section>
                 <img src="https://picsum.photos/200/160" alt="logopic">
             </section>
             <section>
-                <button>-</button>
-                <input type="text" value="0">
-                <button>+</button>
+                <button type="button">-</button>
+                <h4>0</h4>
+                <input type="hidden">
+                <button type="button">+</button>
             </section>
         </article>
-        <h3>Total:</h3>
-        <input type="text" value="12.00$">
-    </div>
+        <div>
+            <div class="price">
+                <h3>Total: </h3>
+                <h3 class="value">12.00</h3>
+            </div>
+            <button type="submit">Checkout</button>
+        </div>
+</form>
 </main>
 <?php output_footer();?>

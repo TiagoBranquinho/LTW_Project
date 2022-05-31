@@ -58,3 +58,17 @@ article img{
   height: auto;
   width: 100%;
 }
+
+.price .value::after{
+  content: '$';
+}
+
+.price .value::before{
+  content: "\00a0 ";
+}
+
+.price{
+  display: flex;
+  place-content: center;
+  margin: 0;
+}
