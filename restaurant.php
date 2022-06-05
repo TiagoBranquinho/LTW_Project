@@ -22,14 +22,14 @@
     </select>
     </form>
     </div>
-    <form class="restaurantDishes">
+    <form class="restaurantDishes" action="action_order.php" method="POST">
         <article>
             <section>
                 <h4>Streetwise Two</h4>
                 <h4>Category: Chicken</h4>
                 <div class="price">
                     <h4>Price: </h4>
-                    <h4 class="value">3,99</h4>
+                    <h4 class="value">3.99</h4>
                 </div>
             </section>
             <section>
@@ -48,7 +48,7 @@
                 <h4>Category: Chicken</h4>
                 <div class="price">
                     <h4>Price: </h4>
-                    <h4 class="value">3,99</h4>
+                    <h4 class="value">3.99</h4>
                 </div>
             </section>
             <section>
@@ -67,7 +67,7 @@
                 <h4>Category: Chicken</h4>
                 <div class="price">
                     <h4>Price: </h4>
-                    <h4 class="value">3,99</h4>
+                    <h4 class="value">3.99</h4>
                 </div>
             </section>
             <section>
@@ -83,7 +83,7 @@
         <div>
             <div class="price">
                 <h3>Total: </h3>
-                <h3 class="value">12.00</h3>
+                <h3 class="value">00.00</h3>
             </div>
             <button type="submit">Checkout</button>
         </div>

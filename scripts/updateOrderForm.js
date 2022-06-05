@@ -1,5 +1,5 @@
 function updateForm(){
-    const button = document.querySelectorAll('.restaurantDishes > div button');
+    const button = document.querySelector('.restaurantDishes > div button');
     const values = document.querySelectorAll('.restaurantDishes article section:nth-child(3) input');
     button.addEventListener('click', function(){
         console.log(button);
