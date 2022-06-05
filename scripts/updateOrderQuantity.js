@@ -12,8 +12,5 @@ function uploadQuantity(){
         })
     
     }
-
-
 }
-
 uploadQuantity();

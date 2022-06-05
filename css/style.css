@@ -248,7 +248,7 @@ ul{
 
 #restaurants li{
     text-align: center;
-    padding: 2em;
+    padding: 1.5em;
     border: 2px;
     border-style: solid;
     border-color: #bf3100;
@@ -287,8 +287,11 @@ ul{
 }
 
 .restaurant #images *{
-    width: 240px;
-    height: 170px;
+    margin-right: 1em;
+}
+
+.restaurant #images {
+    margin: 1px;
 }
 
 .restaurant #buttons a{
