@@ -104,13 +104,12 @@ button, .restaurant #buttons a, .userdata a{
     grid-column-start: 2;
 }
 
-input {
+input[type=text], input[type=email], input[type=password] {
     height: 3em;
-    border-radius: 25px;
+    border-radius: 2em;
     border-style: solid;
-    border-width: 1px;
+    border-width: 0.1em;
     border-color: rgba(183, 180, 174, 0.805);
-    width: 30em;
 }
 
 main > .login label {
@@ -206,7 +205,7 @@ h5 a{
 }
 
  #welcome{
-     margin-top: 10em;
+    margin-top: 10em;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -315,91 +314,41 @@ ul{
 
 
 .register {
-    border-style: solid;
-    border-radius: 25px;
-    width: 30em;
-    display: grid;
-    padding: 1.5em;
-    grid-template-rows: 4em 4em 4em 4em 4em;
-    grid-template-columns: 3fr 1fr;
-    margin: auto;
-    margin-top: 10em;
-    margin-bottom: 10em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: baseline;
 }
 
-.register #option1, #option2{
-    height: 13px;
-    width: 13px;
+.register .inputbox:last-of-type {
+    text-align: center;
+    width: 100%;
 }
 
-.register input{
-    height: 3em;
-    border-radius: 25px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgba(183, 180, 174, 0.805);
-    width: auto;
-    padding-left: 1em;
+.register button {
+   margin-left: auto;
+   margin-right: auto;
 }
 
-.register input:nth-child(1){
-    grid-row-start: 1;
-    grid-column-start: 1;
-    grid-column-end: span 2;
+.register input {
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
-.register input:nth-child(2){
-    grid-row-start: 2;
-    grid-column-start: 1;
-    grid-column-end: span 2;
-}
-.register input:nth-child(3){
-    grid-row-start: 3;
-    grid-column-start: 1;
-    grid-column-end: span 2;
-}
-.register input:nth-child(4){
-    grid-row-start: 4;
-    grid-column-start: 1;
-    grid-column-end: span 2;
-}
-.register input:nth-child(5){
-    grid-row-start: 5;
-    grid-column-start: 1;
-    grid-column-end: span 2;
-}
-.register input#option1{
-    grid-row-start: 6;
-    grid-column-start: 1;
-    grid-column-end: span 1;
+#registerUser, #registerRO, #registerUserAndRO{
+    visibility: hidden;
 }
 
-.register input#option2{
-    grid-row-start: 7;
-    grid-column-start: 1;
-    grid-column-end: span 1;
+
+#checkboxes  {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
 }
 
-.register label{
-    margin-left: 1.5em;
-}
-
-.register label:nth-of-type(1){
-    grid-row-start: 6;
-    grid-column-start: 1;
-    grid-column-end: span 1;
-}
-
-.register label:nth-of-type(2){
-    grid-row-start: 7;
-    grid-column-start: 1;
-    grid-column-end: span 1;
-}
-
-.register button{
-    grid-row-start: 8;
-    grid-column-start: 2;
-    grid-column-end: span 1;
+#forms {
+    display: inline;
 }
 
 .userdata, .edituser, .payment{
@@ -454,21 +403,21 @@ ul{
     width: 60px;
     height: 34px;
   }
-  
+
   /* Hide default HTML checkbox */
   .switch input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-  
-  
-  
+
+
+
   /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
   }
-  
+
   .slider.round:before {
     border-radius: 50%;
   }

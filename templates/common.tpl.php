@@ -1,7 +1,6 @@
-<?php if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } ;?>
+<?php
+if(!isset($_SESSION)) { session_start(); };
+?>
 <?php function output_header(){;?>
     <!DOCTYPE html> 
         <html lang="en-US">
@@ -11,6 +10,8 @@
                 <link href="../css/style.css" rel="stylesheet">
                 <link href="../css/restaurant.css" rel="stylesheet">
                 <link href="../css/responsive.css" rel="stylesheet">
+                <script src="script.js" defer></script>
+                <script src="scripts/registerCheckboxResponsive.js" defer></script>
                 <link href="../css/order.css" rel="stylesheet">
                 <script src="../scripts/script.js" defer></script>
                 <script src="../scripts/changePass.js" defer></script>

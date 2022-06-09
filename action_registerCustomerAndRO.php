@@ -1,0 +1,31 @@
+<?php
+    declare(strict_types = 1);
+    session_start();
+
+    include_once('database/connection.db.php');
+    include_once('database/restaurantOwner.class.php');
+    include_once('database/restaurant.class.php');
+
+    if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email']) ||
+        empty($_POST['address']) || empty($_POST['phoneNumber']) || empty($_POST['restaurantName']) ||
+        empty($_POST['restaurantCategory']) || empty($_POST['restaurantAddress']))
+    {
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
+    $db = getDatabaseConnection();
+
+    $restaurantOwner = new RestaurantOwner($_POST['username'],
+        $_POST['email'], $_POST['address'] ,$_POST['phoneNumber']);
+
+    $restaurant = new Restaurant($_POST['restaurantName'],
+        $_POST['restaurantCategory'], $_POST['restaurantAddress']);
+
+    $created = RestaurantOwner::registerRestaurantOwner($db,$restaurantOwner,$restaurant,true);
+
+    if (!$created) {
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    } else {
+        header('Location: login.php');
+    }
+?>
