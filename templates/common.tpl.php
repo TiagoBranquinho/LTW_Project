@@ -28,7 +28,7 @@
                     </section>
                     <section id="menu">
                         <a href="index.php"><h3>Home</h3></a>
-                        <a href="restaurants.php"><h3>Restaurants</h3></a>
+                        <a href="restaurants.php?filter=None"><h3>Restaurants</h3></a>
                         <?php if(isset($_SESSION['username'])){?>
                         <a href="user.php"><h3><?php echo $_SESSION['username'];?></h3></a>
                         <a href="action_logout.php"><h3>Logout</h3></a>

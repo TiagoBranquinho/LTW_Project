@@ -6,6 +6,5 @@
     $stmt->execute();
     return $stmt->fetch()['ret'] + 1;
 }
-
 ?>
     

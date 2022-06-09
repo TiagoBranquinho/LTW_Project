@@ -11,6 +11,8 @@ DROP TABLE IF EXISTS Dish;
 DROP TABLE IF EXISTS Review;
 DROP TABLE IF EXISTS Image;
 DROP TABLE IF EXISTS FavouriteRestaurant;
+DROP TABLE IF EXISTS Category;
+
 
 CREATE TABLE User
 (
@@ -28,7 +30,7 @@ CREATE TABLE Restaurant
   restaurantID  integer PRIMARY KEY ,
   name          NVARCHAR(150) NOT NULL ,
   imageID       integer CONSTRAINT fk_restaurant_image REFERENCES Image (imageID) ,
-  category      NVARCHAR(50) NOT NULL ,
+  category      NVARCHAR(50) NOT NULL CONSTRAINT fk_restaurant_category REFERENCES Category (kind) ,
   address       NVARCHAR(70) NOT NULL
 );
 
@@ -79,12 +81,28 @@ CREATE TABLE FavouriteRestaurant
   PRIMARY KEY (restaurantID, username)
 );
 
+CREATE TABLE Category
+(  
+  kind  NVARCHAR(50) PRIMARY KEY
+);
+
 
 INSERT INTO User VALUES("alex", "9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684", "email", "rua sesamo", "91239192", false, true);
 
-INSERT INTO Image VALUES("1", "ze.txt");
+INSERT INTO Image VALUES("1", "aa");
 
-INSERT INTO Image VALUES("2", "aa.txt");
+INSERT INTO Image VALUES("2", "bb");
+
+INSERT INTO Category VALUES("Gourmet");
+INSERT INTO Category VALUES("Asian");
+INSERT INTO Category VALUES("Italian");
+INSERT INTO Category VALUES("Fast Food");
+INSERT INTO Category VALUES("Cheap");
+
+INSERT INTO Restaurant VALUES("1", "KFC", "1", "Fast Food", "Rua do Porto, Porto");
+INSERT INTO Restaurant VALUES("2", "McDonalds", "2", "Fast Food", "Campus 2 andar, Porto");
+INSERT INTO Restaurant VALUES("3", "Sabor Gaúcho", "2", "Cheap", "Campus, 2 andar, Porto");
+INSERT INTO Restaurant VALUES("4", "Cantina da Feup", "2", "Gourmet", "Feup, Porto");
 
 
 COMMIT TRANSACTION;

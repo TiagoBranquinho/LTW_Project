@@ -25,5 +25,6 @@
 
 </div>
 </div>
+
 </main>
 <?php output_footer();?>
