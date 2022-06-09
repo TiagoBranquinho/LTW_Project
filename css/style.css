@@ -27,6 +27,10 @@ main {
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0 5em 0 5em;
 }
 
 header h3{
@@ -80,7 +84,7 @@ main > .login{
     margin-top: 10em;
 }
 
-button, .restaurant a{
+button, .restaurant #buttons a, .userdata a{
     background-color: #bf3100;
     border: solid;
     color: white;
@@ -165,11 +169,6 @@ a {
     color: black;
 }
 
-main{
-    padding: 0;
-    margin: 0 4em 0 4em;
-}
-
 #bigLogo{
     display: flex;
     flex-direction: column;
@@ -192,7 +191,7 @@ main{
 }
 
 main > h1{
-    margin: 1em;
+    margin: 1em 1em 1em 0;
 }
 
 main > h5{
@@ -248,7 +247,7 @@ ul{
 
 #restaurants li{
     text-align: center;
-    padding: 2em;
+    padding: 1.5em;
     border: 2px;
     border-style: solid;
     border-color: #bf3100;
@@ -287,8 +286,11 @@ ul{
 }
 
 .restaurant #images *{
-    width: 240px;
-    height: 170px;
+    margin-right: 1em;
+}
+
+.restaurant #images {
+    margin: 1px;
 }
 
 .restaurant #buttons a{
@@ -310,68 +312,6 @@ ul{
     width: auto;
 }
 
-.payment{
-    display: grid;
-    grid-template-rows: 10em repeat(4,5em);
-    grid-template-columns: 20em 10em 17em 5em;
-    margin: 5em 5em 5em 15em;
-}
-
-.payment h2{
-    grid-row-start: 1;
-}
-
-.payment input, .payment h3{
-    grid-row-start: 2;
-    margin: 0em;
-    width: fit-content;
-}
-
-.payment h3:first-of-type {
-    grid-column-start: 1;
-}
-
-.payment h3:nth-of-type(2){
-    grid-column-start: 3;
-}
-
-.payment input:nth-of-type(1){
-    grid-column-start: 2;
-}
-
-.payment input:nth-of-type(2){
-    grid-column-start: 5;
-}
-
-
-.payment label:nth-of-type(1){
-    grid-row-start: 3;
-    grid-column-start: 1;
-}
-
-.payment li input{
-    width: fit-content;
-    margin: 0;
-}
-
-.payment label:nth-of-type(2){
-    grid-row-start: 3;
-    grid-column-start: 3;
-}
-
-.payment label:nth-of-type(3){
-    grid-row-start: 4;
-}
-
-.payment label:nth-of-type(4){
-    grid-row-start: 4;
-    grid-column-start: 3;
-}
-
-.payment button{
-    grid-row-start: 5;
-    grid-column-start: 2;
-}
 
 .register {
     display: flex;
@@ -410,3 +350,74 @@ ul{
 #forms {
     display: inline;
 }
+
+.userdata, .edituser, .payment{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 2em;
+    place-self: center;
+    place-content: center;
+    margin-top: 5em;
+}
+
+.userdata > *, .edituser > *:not(button), .payment > *:not(.switch, h3, h1, button){
+    width: 50%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.userdata > h1, .userdata > h4:nth-of-type(5), .edituser h1, .edituser > label:nth-of-type(5), .payment h1, .payment label:last-of-type{
+    width: 100%;
+}
+
+
+.changepassword{
+    display: flex;
+    flex-flow: column;
+    row-gap: 2em;
+    place-self: center;
+    place-content: center;
+    margin-top: 5em;
+}
+
+.changepassword h1{
+    margin: 0ch;
+}
+
+.changepassword label{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    align-self:flex-end;
+}
+
+.changepassword h1{
+    margin: 0;
+}
+
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }

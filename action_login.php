@@ -1,8 +1,6 @@
 <?php
   declare(strict_types = 1);
   session_start();
-  session_destroy();
-  session_start();
 
   include_once('database/connection.db.php');
   include_once('database/user.class.php');
@@ -13,8 +11,9 @@
 
   if ($user) {
     $_SESSION['username'] = $user->username;
+    header('Location: user.php');
   }
-
-  echo "Welcome ". $_SESSION['username'] . " to Food Center! ";
-  //header('Location: ' . $_SERVER['HTTP_REFERER']);
+  else{
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+  }
 ?>
