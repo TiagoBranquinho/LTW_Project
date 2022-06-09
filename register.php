@@ -3,20 +3,129 @@
     include_once('templates/common.tpl.php');
     output_header();
 ?>
-<main>
-    <h1>Registration</h1>
-    <a href="payment.php"><h1>PAYMENT METHOD</h1></a>
-    <form class="register" action="action_register.php" method="POST">
-        <input type="text" name="username" placeholder="username" pattern="^[A-Za-z][A-Za-z0-9_]{2,}$" title="Minimum 3 characters, start with an alphabet and all other characters can be alphabets, numbers or an underscore">
-        <input type="password" name="password" placeholder="password" pattern="^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$" title="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number">
-        <input type="email" name="email" placeholder="email">
-        <input type="text" name="address" placeholder="address">
-        <input type="text" name="phoneNumber" placeholder="phone number">
-        <input type="checkbox" id="option1" name="restOwner" value=1>
-        <label for="option1">Restaurant Owner</label>
-        <input type="checkbox" id="option2" name="costumer" value=1>
-        <label for="option2">Costumer</label>
-        <button type="submit">Register</button>
-    </form>
+<main id="formPage">
+    <h1>Register</h1>
+
+    <div id="checkboxes">
+        <span class="checkBox">
+            <input type="checkbox" id="option1" name="customer" onclick="register()">
+            <label for="option1">Customer</label>
+        </span>
+        <span class="checkbox">
+            <input type="checkbox" id="option2" name="restOwner" onclick="register()">
+            <label for="option2">Restaurant Owner</label>
+        </span>
+    </div>
+
+    <div id="forms">
+        <form action="action_registerCustomer.php" id="registerUser" method="POST">
+            <fieldset class="register">
+                <legend>Customer Data</legend>
+                <div class="inputbox">
+                <label for="username">Username*:</label>
+                <input type="text" name="username" size="25" placeholder="username" id="username" required="true" pattern="^[A-Za-z][A-Za-z0-9_]{2,}$" title="Minimum 3 characters, start with an alphabet and all other characters can be alphabets, numbers or an underscore">
+                </div>
+                <div class="inputbox">
+                <label for="password">Password*:</label>
+                <input type="password" name="password" size="25" placeholder="password" id="password" required="true" pattern="^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$" title="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number">
+                </div>
+                <div class="inputbox">
+                <label for="email">Email*:</label>
+                <input type="email" name="email" size="35" placeholder="email" id="email" required="true">
+                </div>
+                <div class="inputbox">
+                <label for="phoneNumber">Phone Number*:</label>
+                <input type="text" name="phoneNumber" size="15" placeholder="phone number" id="phoneNumber" required="true">
+                </div>
+                <div class="inputbox">
+                <label for="address">Address:</label>
+                <input type="text" name="address" id="address" size="50" placeholder="address">
+                </div>
+                <button type="submit">Register</button>
+            </fieldset>
+        </form>
+
+        <form action="action_registerRO.php" id="registerRO" method="POST">
+            <fieldset class="register">
+                <legend>Restaurant Owner</legend>
+                <div class="inputbox">
+                    <label for="username">Username*:</label>
+                    <input type="text" name="username" placeholder="username" required="true" pattern="^[A-Za-z][A-Za-z0-9_]{2,}$" title="Minimum 3 characters, start with an alphabet and all other characters can be alphabets, numbers or an underscore">
+                </div>
+                <div class="inputbox">
+                    <label for="password">Password*:</label>
+                    <input type="password" name="password" placeholder="password" required="true" pattern="^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$" title="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number">
+                </div>
+                <div class="inputbox">
+                    <label for="email">Email*:</label>
+                    <input type="email" name="email" placeholder="email" required="true">
+                </div>
+                <div class="inputbox">
+                    <label for="phoneNumber">Phone Number*:</label>
+                    <input type="text" name="phoneNumber" placeholder="phone number" required="true">
+                </div>
+                <div class="inputbox">
+                    <label for="restaurantName">Restaurant Name*:</label>
+                    <input type="text" name="restaurantName" placeholder="Restaurant Name" required="true">
+                </div>
+                <div class="inputbox">
+                    <label for="Restaurant Image">Restaurant Image: </label>
+                    <input type="file" name="RestaurantImage" accept="image/png,image/jpeg"/>
+                </div>
+                <div class="inputbox">
+                    <label for="restaurantCategory">Restaurant Category*:</label>
+                    <input type="text" name="restaurantCategory" placeholder="Restaurant Category" required="true">
+                </div>
+                <div class="inputbox">
+                    <label for="restaurantAddress">Address*:</label>
+                    <input type="text" name="restaurantAddress" placeholder="address" size="50" required="true">
+                </div>
+                <button type="submit">Register</button>
+            </fieldset>
+        </form>
+
+        <form action="action_registerCustomerAndRO.php" id="registerUserAndRO" method="POST">
+            <fieldset class="register">
+                <legend>Customer Data</legend>
+                <div class="inputbox">
+                <label for="username">Username*:</label>
+                <input type="text" name="username" size="25" placeholder="username" id="username" required="true" pattern="^[A-Za-z][A-Za-z0-9_]{2,}$" title="Minimum 3 characters, start with an alphabet and all other characters can be alphabets, numbers or an underscore">
+                </div>
+                <div class="inputbox">
+                <label for="password">Password*:</label>
+                <input type="password" name="password" size="25" placeholder="password" id="password" required="true" pattern="^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$" title="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number">
+                </div>
+                <div class="inputbox">
+                <label for="email">Email*:</label>
+                <input type="email" name="email" size="35" placeholder="email" id="email" required="true">
+                </div>
+                <div class="inputbox">
+                <label for="phoneNumber">Phone Number*:</label>
+                <input type="text" name="phoneNumber" size="15" placeholder="phone number" id="phoneNumber" required="true">
+                </div>
+                <div class="inputbox">
+                <label for="address">Address:</label>
+                <input type="text" name="address" id="address" size="50" placeholder="address">
+                </div>
+            </fieldset>
+            <fieldset class="register">
+                <legend>Restaurant Data</legend>
+                <div class="inputbox">
+                    <label for="restaurantName">Restaurant Name*:</label>
+                    <input type="text" name="restaurantName" placeholder="Restaurant Name" required="true">
+                </div>
+                <div class="inputbox">
+                    <label for="restaurantCategory">Restaurant Category*:</label>
+                    <input type="text" name="restaurantCategory" placeholder="Restaurant Category" required="true">
+                </div>
+                <div class="inputbox">
+                    <label for="restaurantAddress">Restaurant Address*:</label>
+                    <input type="text" name="restaurantAddress" placeholder="address" size="50" required="true">
+                </div>
+                <button type="submit">Register</button>
+            </fieldset>
+        </form>
+    </div>
+
 </main>
 <?php output_footer();?>
