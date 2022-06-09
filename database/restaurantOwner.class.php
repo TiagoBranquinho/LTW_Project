@@ -37,6 +37,22 @@
 
                 );
 
+                $filename = $_FILES['restaurantImage']['name'];
+                $tempname = $_FILES['restaurantImage']['tmp_name'];
+                $folder =  "img/restaurants/".$restaurant->getName();
+                mkdir($folder);
+                $imagePath = $folder."/".$restaurant->getName().".png";
+
+                $insertFilenameStmt = $db->prepare('INSERT INTO Image VALUES(?,?)');
+                $insertFilenameStmt->execute(array(45,$imagePath));
+
+                if(move_uploaded_file($tempname,$imagePath)) {
+                    ?> <script> alert('File uploaded!') </script> <?php
+                } else {
+                    ?> <script> alert('File upload fail!') </script> <?php
+                }
+
+
                 if(!$restaurantStmt) {
                     return false;
                 } else {
