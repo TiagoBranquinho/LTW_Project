@@ -1,3 +1,12 @@
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&family=Josefin+Sans&family=Secular+One&display=swap');
+
+/*
+Fonts Usag:
+font-family: 'Fira Sans Condensed', sans-serif;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Secular One', sans-serif;
+*/
 
 html{
     height: 100%;
@@ -21,7 +30,19 @@ header, footer {
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: auto;
-  }
+}
+
+h1,h2 {
+    font-family: 'Secular One', sans-serif;
+}
+
+h3,h4,h5,h6 {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+p,a {
+    font-family: 'Josefin Sans', sans-serif;
+}
   
 main {
     flex-grow: 1;
@@ -39,10 +60,7 @@ header h3{
 }
 
 header img{
-    width: 4em;
-    height: 4em;
-    padding-right: 1.5em;
-    padding-left: 5em;
+    padding-left: 6.5em;
 }
 
 #logo{
@@ -51,11 +69,6 @@ header img{
     align-items: center;
     flex-grow: 1;
 
-}
-
-#logo h3{
-    width: 4em;
-    text-align: center;
 }
 
 #menu{
@@ -68,20 +81,21 @@ header img{
 
 
 h1{
+    font-family: 'Secular One', sans-serif;
     margin: 0;
     margin-left: 1.5em;
 }
 
-main > .login{
+.login{
     border-style: solid;
     border-radius: 25px;
-    width: 30em;
+    width: 40em;
     display: grid;
     padding: 1.5em;
-    grid-template-rows: 4em 4em 4em;
-    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 5em 5em 5em;
+    grid-template-columns: 3fr 2fr;
     margin: auto;
-    margin-top: 10em;
+    margin-bottom: 10em;
 }
 
 button, .restaurant #buttons a, .userdata a{
@@ -114,13 +128,18 @@ input[type=text], input[type=email], input[type=password] {
 
 main > .login label {
     font-size: larger;
+    font-family: 'Fira Sans Condensed', sans-serif;
 }
 
+
+
 main > .login label:nth-child(1) input{
-    margin-left: 4.3em; 
+    margin-bottom: 1em;
+    margin-left: 10em;
 }
 
 main > .login label:nth-child(1){
+    margin-left: 5em;
     grid-row-start: 1;
     grid-column-start: 1;
     grid-column-end: span 2;
@@ -128,10 +147,11 @@ main > .login label:nth-child(1){
 
 
 main > .login label:nth-child(2) input{
-    margin-left: 4.5em;
+    margin-left: 10em;
 }
 
 main > .login label:nth-child(2){
+    margin-left: 5em;
     grid-row-start: 2;
     grid-column-start: 1;
     grid-column-end: span 2;
@@ -149,7 +169,7 @@ main > .login label:nth-child(3){
 
 
 main > .login h5{
-    margin: 1em 0 0 3em;
+    margin: 1.5em 0 0 3em;
 }
 
 footer{
@@ -169,34 +189,13 @@ a {
     color: black;
 }
 
-#bigLogo{
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    border-style: solid;
-    border-radius: 50%;
-    padding: 2em 5em 2em 5em;
-    border-width: 5px;
-}
-
-#bigLogo h2{
-    width: 4em;
-    text-align: center;
-}
-
-#bigLogo h2, #bigLogo h4{
-    margin: 0;
-    margin-top: 2px;
-}
-
 main > h1{
     margin: 1em 1em 1em 0;
 }
 
 main > h5{
-    margin-left: 45em;
-    margin-top: 1em;
+    text-align: center;
+    margin-bottom: 1em;
 }
 
 h5 a{
@@ -321,7 +320,17 @@ ul{
     align-content: baseline;
 }
 
-.register .inputbox:last-of-type {
+#registerUser > .register > .inputbox:last-of-type {
+    text-align: center;
+    width: 100%;
+}
+
+#registerUserAndRO > .register > .inputbox:last-of-type {
+    text-align: center;
+    width: 100%;
+}
+
+#registerRO > .register > .inputbox:last-of-type {
     text-align: center;
     width: 100%;
 }
@@ -336,15 +345,40 @@ ul{
     margin-bottom: 2%;
 }
 
-#registerUser, #registerRO, #registerUserAndRO{
-    visibility: hidden;
+.inputbox > label {
+    font-family: 'Fira Sans Condensed', sans-serif;
 }
 
+fieldset {
+    border-radius: 2em;
+    border-style: solid;
+    border-width: 0.1em;
+    border-color: rgba(183, 180, 174, 0.805);
+}
+
+fieldset > legend {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+#registerUser, #registerRO, #registerUserAndRO{
+    display: none;
+}
 
 #checkboxes  {
     display: flex;
     flex-direction: row;
     align-content: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.checkBox {
+    margin-right: 10em;
+    margin-left: 5em;
+}
+
+.checkBox > label {
+    font-family: 'Fira Sans Condensed', sans-serif;
 }
 
 #forms {

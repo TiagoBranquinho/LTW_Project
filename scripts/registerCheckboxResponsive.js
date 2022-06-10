@@ -7,21 +7,21 @@ function register() {
   const registerUserAndRO = document.getElementById("registerUserAndRO")
 
   if(userCheckbox.checked && restaurantOwnerCheckbox.checked) {
-    registerUserForm.style.visibility = "hidden";
-    registerROForm.style.visibility = "hidden";
-    registerUserAndRO.style.visibility = "visible";
+    registerUserForm.style.display = "none";
+    registerROForm.style.display = "none";
+    registerUserAndRO.style.display = "initial";
   } else if(userCheckbox.checked) {
-    registerUserForm.style.visibility = "visible";
-    registerUserAndRO.style.visibility = "hidden";
-    registerROForm.style.visibility = "hidden";
+    registerUserForm.style.display = "initial";
+    registerUserAndRO.style.display = "none";
+    registerROForm.style.display = "none";
   } else if(restaurantOwnerCheckbox.checked) {
-    registerROForm.style.visibility = "visible";
-    registerUserAndRO.style.visibility = "hidden";
-    registerUserForm.style.visibility = "hidden";
+    registerROForm.style.display = "initial";
+    registerUserAndRO.style.display = "none";
+    registerUserForm.style.display = "none";
   } else {
-    registerUserAndRO.style.visibility = "hidden";
-    registerUserForm.style.visibility = "hidden";
-    registerROForm.style.visibility = "hidden";
+    registerUserAndRO.style.display = "none";
+    registerUserForm.style.display = "none";
+    registerROForm.style.display = "none";
   }
 }
 

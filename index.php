@@ -1,30 +1,27 @@
 <?php
-    
     session_start();
     include_once('templates/common.tpl.php');
     include_once('database/image.class.php');
     output_header();
 ?>
 <main>
-<div id="welcome">
-<div id="bigLogo">
-<img src="https://picsum.photos/100" alt="logopic">
-<h2>FOOD CENTER</h2>
-<h4>Since 2022</h4>
-</div>
-<div id="search">
-<h1>Welcome</h1>
-<form>
-<select name="restaurant">
-    <option disabled selected value><h3>Search restaurants here</h3></option>
-    <option value="1">Tasca</option>
-    <option value="2">KFC</option>
-    <option value="3">Sabor Gaúcho</option>
-</select>
-</form>
-
-</div>
-</div>
-
+    <div id="welcome">
+        <div id="bigLogo">
+            <img src="img/assets/food-center-logo.svg" alt="logopic">
+        </div>
+        <div id="search">
+            <h1>Welcome!</h1>
+            <form>
+                <input type="text" name="restaurant" placeholder=" Search Restaurants here..." required="false" size="35" list="restaurants">
+                <datalist id="restaurants">
+                    <!--Use AJAX-->
+                    <option>Tasca</option>
+                    <option>KFC</option>
+                    <option>Sabor Gaúcho</option>
+                </datalist>
+            </form>
+        </div>
+    </div>
 </main>
+
 <?php output_footer();?>

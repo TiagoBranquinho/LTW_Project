@@ -2,10 +2,10 @@
     <main>
         <h1>Login</h1>
             <form class="login" action="action_login.php" method="POST">
-            <label><strong>Username:</strong>
+            <label for="username"><strong>Username:</strong>
                 <input type="text" name="username" placeholder="username">
             </label>
-            <label><strong>Password:</strong>
+            <label for="password"><strong>Password:</strong>
                 <input type="password" name="password" placeholder="password">
             </label>
             <h5>Forgotten your password? Click <a>here</a> </h5>
