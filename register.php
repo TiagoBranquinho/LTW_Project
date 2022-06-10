@@ -5,13 +5,13 @@
 ?>
 <main id="formPage">
     <h1>Register</h1>
-
+    <h4>Please choose one of the options, or both</h4>
     <div id="checkboxes">
         <span class="checkBox">
             <input type="checkbox" id="option1" name="customer" onclick="register()">
             <label for="option1">Customer</label>
         </span>
-        <span class="checkbox">
+        <span class="checkBox">
             <input type="checkbox" id="option2" name="restOwner" onclick="register()">
             <label for="option2">Restaurant Owner</label>
         </span>
@@ -88,7 +88,9 @@
                     <label for="restaurantImage">Restaurant Image: </label>
                     <input type="file" name="restaurantImage" accept="image/png,image/jpeg"/>
                 </div>
-                <button type="submit">Register</button>
+                <div class="inputbox">
+                    <button type="submit">Register</button>
+                </div>
             </fieldset>
         </form>
 
