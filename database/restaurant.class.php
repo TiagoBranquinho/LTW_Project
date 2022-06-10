@@ -73,18 +73,14 @@
   }
 
   static function filterRestaurants(array &$restaurantList, string $filter) {
-    if($filter != "None"){
+    $newArr = array();
+    if($filter != "All"){
       foreach($restaurantList as $restaurantItem){
         if($restaurantItem->category === $filter)
-          $newArr[] = $restaurantItem;
+            array_push($newArr, $restaurantItem);
       }
-    }
-    if(isset($newArr)){
       $restaurantList = $newArr;
-      return 1;
     }
-    else
-      return 0;
   }
 
       /**

@@ -10,7 +10,7 @@
                 <form action="action_restaurants_categories.php" method="POST">
                     <select name="restaurantCategory"> <!-- MISSING CSS -->
                         <option disabled selected value><h6>Category</h6></option>
-                        <option value="None">None</option>
+                        <option value="All">All</option>
                         <option value="Gourmet">Gourmet</option>
                         <option value="Asian">Asian</option>
                         <option value="Italian">Italian</option>
@@ -22,10 +22,10 @@
             </div>
             <ul id="restaurants">
             <?php $restaurantList = Restaurant::getRestaurants(getDatabaseConnection());
-            if(Restaurant::filterRestaurants($restaurantList, $_GET['filter'])){
-                foreach($restaurantList as $restaurantItem){
-                    output_restaurant_item($restaurantItem);
-                };
+            Restaurant::filterRestaurants($restaurantList, $_GET['filter']);
+
+            foreach($restaurantList as $restaurantItem){
+                output_restaurant_item($restaurantItem);
             };?>
             </ul>
         </main>
