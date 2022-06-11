@@ -59,9 +59,8 @@
     $stmt->execute(array($id));
 
     $restaurant = $stmt->fetch();
-    return new Restaurant($restaurant['restaurantID'],
+    return new Restaurant(
     $restaurant['name'],
-    $restaurant['imageID'],
     $restaurant['category'],
     $restaurant['address']);
 }
