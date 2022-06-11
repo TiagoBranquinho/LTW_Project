@@ -1,38 +1,50 @@
 <?php
   declare(strict_types = 1);
   include_once('database/connection.db.php');
-  include_once('database/utils.php');
-  include_once('database/dish.class.php');
 
-  class Restaurant {
-      public int $restaurantID;
-      public int $imageID;
-      public string $name;
-      public string $category;
-      public string $address;
+  class Dish {
+    public int $id;
+    public string $name;
+    public int $imageId;
+    public int $restaurantId;
+    public float $price;
+    public string $category;
+    public float $discount;
 
-    public function __construct(string $name, string $category, string $address)
+    public function __construct(int $id, string $name, int $imageId, int $restaurantId, float $price, string $category, float $discount)
     {
+        if($id == 0){
+           $this->id = getCurrID(getDatabaseConnection(), "dishID", "Dish");
+        }
+        else{
+            $this->id = $id;
+        }
       $this->name = $name;
+      $this->imageId = $imageId;
+      $this->restaurantId = $restaurantId;
+      $this->price = $price;
       $this->category = $category;
-      $this->address = $address;
+      $this->discount = $discount;
     }
 
-    static function registerRestaurant(PDO $db, Restaurant $restaurant, int $imageID) {;
-        $stmt = $db->prepare('INSERT INTO Restaurant(imageID, name, category, address) VALUES(?,?,?,?)');
-        $stmt->execute(array($imageID, $restaurant->name, $restaurant->category, $restaurant->address));
+    static function registerRestaurant(PDO $db, Restaurant $restaurant) {
+      $stmt = $db->prepare("SELECT * FROM Restaurant WHERE restaurant.restaurantID = ?");
+      $stmt->execute([$restaurant->id]);
+      $present = $stmt->fetch();
+
+      if($present){
+          return false;
+      }
+      else{
+        $stmt = $db->prepare('INSERT INTO Restaurant VALUES(?,?,?,?,?)');
+        $stmt->execute(array($restaurant->id, $restaurant->name, $restaurant->imageId, $restaurant->category, $restaurant->address));
         return true;
       }
+    }
 
-
-    static function editRestaurant(PDO $db, Restaurant $restaurant, int $imageID) {
-        if($imageID == -1) {
-            $stmt = $db->prepare("UPDATE Restaurant SET name = ?, category = ? , address = ? WHERE restaurant.restaurantID = ?");
-            $stmt->execute([$restaurant->name, $restaurant->category, $restaurant->address]);
-        } else {
-            $stmt = $db->prepare("UPDATE Restaurant SET name = ?, category = ? , address = ?, imageID = ? WHERE restaurant.restaurantID = ?");
-            $stmt->execute([$restaurant->name, $restaurant->category, $restaurant->address, $imageID]);
-        }
+    static function editRestaurant(PDO $db, Restaurant $restaurant) {
+      $stmt = $db->prepare("UPDATE Restaurant SET name = ?, imageID = ?, category = ? , address = ? WHERE restaurant.restaurantID = ?");
+      $stmt->execute([$restaurant->name, $restaurant->imageId, $restaurant->category, $restaurant->address]);
     }
 
     static function getRestaurants(PDO $db) {
@@ -41,15 +53,13 @@
 
         $restaurants = array();
         while($restaurant = $stmt->fetch()){
-            $thisRestaurant = new Restaurant(
+            array_push($restaurants, new Restaurant(
+                $restaurant['restaurantID'],
                 $restaurant['name'],
+                $restaurant['imageID'],
                 $restaurant['category'],
                 $restaurant['address']
-            );
-
-            $thisRestaurant->restaurantID = $restaurant['restaurantID'];
-            $thisRestaurant->imageID = $restaurant['imageID'];
-            array_push($restaurants, $thisRestaurant);
+            ));
         }
         return $restaurants;
   }
@@ -79,7 +89,7 @@ static function getRestaurantDishes(PDO $db, int $id) {
             $dish['restaurantID'],
             $dish['price'],
             $dish['category'],
-            $dish['discount']
+            $dish['discount'],
         ));
     }
     return $dishes;
@@ -96,14 +106,14 @@ static function getRestaurantDishes(PDO $db, int $id) {
     return $categories;
   }
 
-  static function filterRestaurants(array &$restaurantList, string $filter) {
+  static function filterDishes(array &$dishes, string $filter) {
     $newArr = array();
     if($filter != "All"){
-      foreach($restaurantList as $restaurantItem){
-        if($restaurantItem->category === $filter)
-            array_push($newArr, $restaurantItem);
+      foreach($dishes as $dish){
+        if($dish->category === $filter)
+            array_push($newArr, $dish);
       }
-      $restaurantList = $newArr;
+      $dishes = $newArr;
     }
   }
 
