@@ -24,14 +24,11 @@
             <h4>Filter by Category:</h4>
             <form action="action_restaurant_dishes_category.php" method="POST">
                 <select name="dishCategory">
-                    <option disabled selected value><h6>Category</h6></option>
-                    <option value='All'>All</option>
-                    <option value='Chicken'>Chicken</option>
-                    <option value='Vegan'>Vegan</option>
-                    <option value='Vegetarian'>Vegetarian</option>
-                    <option value='Sushi'>Sushi</option>
-                    <option value='Meat'>Meat</option>
-                    <option value='Fish'>Fish</option>
+                    <option selected value="All">All</option>
+                    <?php $categories = Dish::getCategories(getDatabaseConnection());
+                    foreach($categories as $category){
+                        echo "<option value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
+                    }?>
                 </select>
                 <?php echo "<input type='hidden' name='id' value='". $id . "'>";?>
                 <button type='submit'>Filter</button>

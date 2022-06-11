@@ -85,7 +85,7 @@ static function getRestaurantDishes(PDO $db, int $id) {
 }
 
   static function getCategories(PDO $db) {
-    $stmt = $db->prepare('SELECT * FROM Category');
+    $stmt = $db->prepare('SELECT kind FROM Category ORDER BY kind ASC');
     $stmt->execute();
 
     $categories = array();

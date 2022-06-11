@@ -9,13 +9,14 @@
                 <h4>Filter by Category:</h4>
                 <form action="action_restaurants_categories.php" method="POST">
                     <select name="restaurantCategory"> <!-- MISSING CSS -->
-                        <option disabled selected value><h6>Category</h6></option>
-                        <option value="All">All</option>
-                        <option value="Gourmet">Gourmet</option>
-                        <option value="Asian">Asian</option>
-                        <option value="Italian">Italian</option>
-                        <option value="Fast Food">Fast Food</option>
-                        <option value="Cheap">Cheap</option>
+                        <option selected value="All">All</option>
+                        <?php $categories = Restaurant::getCategories(getDatabaseConnection());
+                        
+
+                        foreach($categories as $category){
+                            echo  "<option value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
+                        };?>
+                        
                     </select>
                     <button type="submit">Filter</button>
                 </form>
