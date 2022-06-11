@@ -4,44 +4,34 @@
   include_once('database/utils.php');
 
   class Restaurant {
-    public int $id;
-    public string $name;
-    public int $imageId;
-    public string $category;
-    public string $address;
+      public int $restaurantID;
+      public int $imageID;
+      public string $name;
+      public string $category;
+      public string $address;
 
-    public function __construct(int $id, string $name, int $imageId, string $category, string $address)
+    public function __construct(string $name, string $category, string $address)
     {
-        if($id == 0){
-           $this->id = getCurrID(getDatabaseConnection(), "restaurantID", "Restaurant");
-        }
-        else{
-            $this->id = $id;
-        }
       $this->name = $name;
-      $this->imageId = $imageId;
       $this->category = $category;
       $this->address = $address;
     }
 
-    static function registerRestaurant(PDO $db, Restaurant $restaurant) {
-      $stmt = $db->prepare("SELECT * FROM Restaurant WHERE restaurant.restaurantID = ?");
-      $stmt->execute([$restaurant->id]);
-      $present = $stmt->fetch();
-
-      if($present){
-          return false;
-      }
-      else{
-        $stmt = $db->prepare('INSERT INTO Restaurant VALUES(?,?,?,?,?)');
-        $stmt->execute(array($restaurant->id, $restaurant->name, $restaurant->imageId, $restaurant->category, $restaurant->address));
+    static function registerRestaurant(PDO $db, Restaurant $restaurant, int $imageID) {;
+        $stmt = $db->prepare('INSERT INTO Restaurant(imageID, name, category, address) VALUES(?,?,?,?)');
+        $stmt->execute(array($imageID, $restaurant->name, $restaurant->category, $restaurant->address));
         return true;
       }
-    }
 
-    static function editRestaurant(PDO $db, Restaurant $restaurant) {
-      $stmt = $db->prepare("UPDATE Restaurant SET name = ?, imageID = ?, category = ? , address = ? WHERE restaurant.restaurantID = ?");
-      $stmt->execute([$restaurant->name, $restaurant->imageId, $restaurant->category, $restaurant->address]);
+
+    static function editRestaurant(PDO $db, Restaurant $restaurant, int $imageID) {
+        if($imageID == -1) {
+            $stmt = $db->prepare("UPDATE Restaurant SET name = ?, category = ? , address = ? WHERE restaurant.restaurantID = ?");
+            $stmt->execute([$restaurant->name, $restaurant->category, $restaurant->address]);
+        } else {
+            $stmt = $db->prepare("UPDATE Restaurant SET name = ?, category = ? , address = ?, imageID = ? WHERE restaurant.restaurantID = ?");
+            $stmt->execute([$restaurant->name, $restaurant->category, $restaurant->address, $imageID]);
+        }
     }
 
     static function getRestaurants(PDO $db) {
@@ -50,13 +40,15 @@
 
         $restaurants = array();
         while($restaurant = $stmt->fetch()){
-            array_push($restaurants, new Restaurant(
-                $restaurant['restaurantID'],
+            $thisRestaurant = new Restaurant(
                 $restaurant['name'],
-                $restaurant['imageID'],
                 $restaurant['category'],
                 $restaurant['address']
-            ));
+            );
+
+            $thisRestaurant->restaurantID = $restaurant['restaurantID'];
+            $thisRestaurant->imageID = $restaurant['imageID'];
+            array_push($restaurants, $thisRestaurant);
         }
         return $restaurants;
   }
