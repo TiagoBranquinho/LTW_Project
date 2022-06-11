@@ -14,7 +14,7 @@
                     echo "<h4>" . $restaurant->address . "</h4>";?>
                     <h3>Rating: 4.2</h3>  <!-- NOT WORKING -->
                 </div>
-                <img src="https://picsum.photos/400/300" alt="logopic">;
+                <img src="https://picsum.photos/400/300" alt="logopic">
             </div>
     <?php };
 
