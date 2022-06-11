@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS Review;
 DROP TABLE IF EXISTS Image;
 DROP TABLE IF EXISTS FavouriteRestaurant;
 DROP TABLE IF EXISTS Category;
+DROP TABLE IF EXISTS DishCategory;
 
 
 CREATE TABLE User
@@ -32,7 +33,7 @@ CREATE TABLE Customer
 
 CREATE TABLE Restaurant
 (
-  restaurantID  integer PRIMARY KEY AUTOINCREMENT ,
+  restaurantID  integer PRIMARY KEY  ,
   imageID       integer CONSTRAINT fk_restaurant_image REFERENCES Image (imageID) ,
   name          NVARCHAR(150) NOT NULL ,
   category      NVARCHAR(50) NOT NULL CONSTRAINT fk_restaurant_category REFERENCES Category (kind) ,
@@ -47,7 +48,7 @@ CREATE TABLE RestaurantOwner
 
 CREATE TABLE Orders
 (
-  orderID       integer AUTOINCREMENT,
+  orderID       integer ,
   state         NVARCHAR(50) NOT NULL ,
   restaurantID  integer CONSTRAINT fk_order_restaurant REFERENCES Restaurant (restaurantID) ,
   dishID        integer CONSTRAINT fk_order_dish REFERENCES Dish (dishID) ,
@@ -58,18 +59,18 @@ CREATE TABLE Orders
 
 CREATE TABLE Dish
 (
-  dishID        integer PRIMARY KEY AUTOINCREMENT,
+  dishID        integer PRIMARY KEY ,
   name          NVARCHAR(70) NOT NULL,
   imageID       integer CONSTRAINT fk_dish_image REFERENCES Image (imageID),
   restaurantID  integer CONSTRAINT fk_dish_restaurant REFERENCES Restaurant (restaurantID),
   price         real NOT NULL,
-  category      NVARCHAR(50) NOT NULL,
+  category      NVARCHAR(50) NOT NULL CONSTRAINT fk_dish_category REFERENCES DishCategory (kind) ,
   discount      real NOT NULL CONSTRAINT valid_discount CHECK (discount <=1 AND discount >=0)
 );
 
 CREATE TABLE Review
 (
-  reviewID     integer PRIMARY KEY AUTOINCREMENT,
+  reviewID     integer PRIMARY KEY  ,
   restaurantID integer CONSTRAINT fk_review_restaurant REFERENCES Restaurant (restaurantID),
   username     NVARCHAR(120) CONSTRAINT fk_review_username REFERENCES User (username) ,
   imageID      integer CONSTRAINT fk_review_image REFERENCES Image (imageID) ,
@@ -97,8 +98,13 @@ CREATE TABLE Category
   kind  NVARCHAR(50) PRIMARY KEY
 );
 
+CREATE TABLE DishCategory
+(
+  kind  NVARCHAR(50) PRIMARY KEY
+);
 
-INSERT INTO User VALUES("alex", "9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684", "email", "rua sesamo", "91239192", false, true);
+
+INSERT INTO User VALUES("alex", "9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684", "email", "rua sesamo", "91239192");
 
 INSERT INTO Image VALUES("1", "aa");
 
@@ -110,10 +116,25 @@ INSERT INTO Category VALUES("Italian");
 INSERT INTO Category VALUES("Fast Food");
 INSERT INTO Category VALUES("Cheap");
 
-INSERT INTO Restaurant VALUES("1", "KFC", "1", "Fast Food", "Rua do Porto, Porto");
-INSERT INTO Restaurant VALUES("2", "McDonalds", "2", "Fast Food", "Campus 2 andar, Porto");
-INSERT INTO Restaurant VALUES("3", "Sabor Gaúcho", "2", "Cheap", "Campus, 2 andar, Porto");
-INSERT INTO Restaurant VALUES("4", "Cantina da Feup", "2", "Gourmet", "Feup, Porto");
+
+INSERT INTO DishCategory VALUES("Chicken");
+INSERT INTO DishCategory VALUES("Vegan");
+INSERT INTO DishCategory VALUES("Vegetarian");
+INSERT INTO DishCategory VALUES("Sushi");
+INSERT INTO DishCategory VALUES("Meat");
+INSERT INTO DishCategory VALUES("Fish");
+
+
+INSERT INTO Restaurant VALUES("1", "1", "KFC", "Fast Food", "Rua do Porto, Porto");
+INSERT INTO Restaurant VALUES("2", "2", "McDonalds", "Fast Food", "Campus 2 andar, Porto");
+INSERT INTO Restaurant VALUES("3", "2", "Sabor Gaúcho", "Cheap", "Campus, 2 andar, Porto");
+INSERT INTO Restaurant VALUES("4", "2", "Cantina da Feup", "Gourmet", "Feup, Porto");
+
+INSERT INTO Dish VALUES("1", "Frango Frito", "1", "1", "7.99", "Chicken", "0");
+INSERT INTO Dish VALUES("2", "Asas de Frango", "1", "1", "6.99", "Chicken", "0");
+INSERT INTO Dish VALUES("3", "Maminha", "1", "3", "5.99", "Meat", "0");
+INSERT INTO Dish VALUES("4", "Frango Assado", "1", "3", "3.99", "Chicken", "0");
+
 
 
 COMMIT TRANSACTION;
