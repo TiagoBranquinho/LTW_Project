@@ -47,7 +47,7 @@
                     <img src="https://picsum.photos/120/100" alt="logopic">
                 </section>
                 <section id="buttons">
-                    <?php echo "<a href='restaurant.php?id=".$restaurant->id."&filter=All'>Menu</a>";;?>
+                    <?php echo "<a href='restaurant.php?id=".$restaurant->restaurantID."&filter=All'>Menu</a>";;?>
                     <a>Reviews</a>  <!-- NOT DONE YET -->
                 </section>
             </article>
