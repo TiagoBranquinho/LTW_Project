@@ -17,10 +17,10 @@
     }
 
     function getPassword(PDO $db){
-      $stmt = $db->prepare('SELECT password from user.password where username = ?');
-      $stmt->execute([$username]);
-      $pass = $stmt->fecth();
-      return pass;
+      $stmt = $db->prepare('SELECT password from user where username = ?');
+      $stmt->execute([$this->username]);
+      $pass = $stmt->fetch();
+      return $pass['password'];
     }
 
     public function changePass(PDO $db, string $newPass){
@@ -53,8 +53,8 @@
               $user['email'],
               $user['address'],
               $user['phoneNumber'],
-              $user['restaurantOwner']?true:false,
-              $user['customer']?true:false
+              /* $user['restaurantOwner']?true:false,
+              $user['customer']?true:false */
           );
       }
       else return null;

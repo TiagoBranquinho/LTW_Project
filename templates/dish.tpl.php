@@ -14,8 +14,9 @@ function output_restaurant_dish(Dish $dish){;?>
                 </section>
                 <section>
                     <button type="button">-</button>
+                    <?php echo "<input type='hidden' id='quantity' name='quantity" . $dish->id . "'>";?>
                     <h4>0</h4>
-                    <input type="hidden">
+                    <?php echo "<input type='hidden' value='" . $dish->id . "' name='element" . $dish->id . "'>";?>
                     <button type="button">+</button>
                 </section>
             </article>

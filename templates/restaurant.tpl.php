@@ -45,6 +45,7 @@
                     <h3>Total: </h3>
                     <h3 class='value'>00.00</h3>
                 </div>
+                <?php echo "<input type='hidden' name='resquestsNr' value='" . sizeof($dishes) . "'>";?>
                 <button type='submit'>Checkout</button>
             </div>
         </form>

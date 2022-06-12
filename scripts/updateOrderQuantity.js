@@ -5,8 +5,6 @@ function getTotal(){
         const price = dish.querySelector('section:nth-child(1) .price .value');
         const quantity = dish.querySelector('section:nth-child(3) h4');
         total += parseFloat(price.innerHTML) * parseFloat(quantity.innerHTML);
-        console.log(parseFloat(price.innerHTML));
-        console.log(parseFloat(quantity.innerHTML));
     }
     return total;
 }
