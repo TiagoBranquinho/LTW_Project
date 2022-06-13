@@ -1,121 +1,93 @@
 <?php
   declare(strict_types = 1);
   include_once('database/connection.db.php');
+  include_once('database/utils.php');
 
   class Order {
-    public int $id;
-    public string $name;
-    public int $imageId;
-    public int $restaurantId;
-    public float $price;
-    public string $category;
-    public float $discount;
+    public int $orderID;
+    public string $state;
+    public int $restaurantID;
+    public int $dishID;
+    public int $quantity;
+    public string $username;
 
-    public function __construct(int $id, string $name, int $imageId, int $restaurantId, float $price, string $category, float $discount)
+    public function __construct(int $orderID, string $state, int $restaurantID, int $dishID, int $quantity, string $username)
     {
-        if($id == 0){
-           $this->id = getCurrID(getDatabaseConnection(), "dishID", "Dish");
-        }
-        else{
-            $this->id = $id;
-        }
-      $this->name = $name;
-      $this->imageId = $imageId;
-      $this->restaurantId = $restaurantId;
-      $this->price = $price;
-      $this->category = $category;
-      $this->discount = $discount;
+      if($orderID === 0)
+        $this->orderID = getCurrID(getDatabaseConnection(), "orderID", "Orders");
+      else
+        $this->orderID = $orderID;
+      $this->state = $state;
+      $this->restaurantID = $restaurantID;
+      $this->dishID = $dishID;
+      $this->quantity = $quantity;
+      $this->username = $username;
     }
 
-    static function registerRestaurant(PDO $db, Restaurant $restaurant) {
-      $stmt = $db->prepare("SELECT * FROM Restaurant WHERE restaurant.restaurantID = ?");
-      $stmt->execute([$restaurant->id]);
-      $present = $stmt->fetch();
-
-      if($present){
-          return false;
-      }
-      else{
-        $stmt = $db->prepare('INSERT INTO Restaurant VALUES(?,?,?,?,?)');
-        $stmt->execute(array($restaurant->id, $restaurant->name, $restaurant->imageId, $restaurant->category, $restaurant->address));
-        return true;
-      }
+  
+static function filterOrders(array &$orderList, string $filter) {
+  $newArr = array();
+  if($filter != "All"){
+    foreach($orderList as $order){
+      if($order->state === $filter)
+          array_push($newArr, $order);
     }
-
-    static function editRestaurant(PDO $db, Restaurant $restaurant) {
-      $stmt = $db->prepare("UPDATE Restaurant SET name = ?, imageID = ?, category = ? , address = ? WHERE restaurant.restaurantID = ?");
-      $stmt->execute([$restaurant->name, $restaurant->imageId, $restaurant->category, $restaurant->address]);
-    }
-
-    static function getRestaurants(PDO $db) {
-        $stmt = $db->prepare('SELECT * FROM Restaurant');
-        $stmt->execute();
-
-        $restaurants = array();
-        while($restaurant = $stmt->fetch()){
-            array_push($restaurants, new Restaurant(
-                $restaurant['restaurantID'],
-                $restaurant['name'],
-                $restaurant['imageID'],
-                $restaurant['category'],
-                $restaurant['address']
-            ));
-        }
-        return $restaurants;
+    $orderList = $newArr;
   }
+}
+static function getUserOrders(PDO $db, string $username) {
+  $stmt = $db->prepare('SELECT * FROM Orders where username = ?');
+  $stmt->execute(array($username));
 
-  static function getRestaurant(PDO $db, int $id) {
-    $stmt = $db->prepare('SELECT * FROM Restaurant WHERE restaurantID = ?');
-    $stmt->execute(array($id));
-
-    $restaurant = $stmt->fetch();
-    return new Restaurant($restaurant['restaurantID'],
-    $restaurant['name'],
-    $restaurant['imageID'],
-    $restaurant['category'],
-    $restaurant['address']);
+  $orders = array();
+  while($order = $stmt->fetch()){
+      $thisOrder = new Order(
+          $order['orderID'],
+          $order['state'],
+          $order['restaurantID'],
+          $order['dishID'],
+          $order['quantity'],
+          $order['username']
+      );
+      array_push($orders, $thisOrder);
+  }
+  return $orders;
 }
 
-static function getRestaurantDishes(PDO $db, int $id) {
-    $stmt = $db->prepare('SELECT * FROM Dish WHERE restaurantID = ?');
-    $stmt->execute(array($id));
+static function getOrdersStates(PDO $db) {
+  $stmt = $db->prepare('SELECT kind FROM OrderState ORDER BY kind ASC');
+  $stmt->execute();
 
-    $dishes = array();
-    while($dish = $stmt->fetch()){
-        array_push($dishes, new Dish(
-            $dish['dishID'],
-            $dish['name'],
-            $dish['imageID'],
-            $dish['restaurantID'],
-            $dish['price'],
-            $dish['category'],
-            $dish['discount'],
-        ));
-    }
-    return $dishes;
+  $states = array();
+  while($state = $stmt->fetch()){
+      array_push($states, $state);
+  }
+  return $states;
 }
 
-  static function getCategories(PDO $db) {
-    $stmt = $db->prepare('SELECT kind FROM DishCategory ORDER BY kind ASC');
-    $stmt->execute();
+static function getOrder(PDO $db) {
+  $stmt = $db->prepare('SELECT * FROM Restaurant');
+  $stmt->execute();
 
-    $categories = array();
-    while($category = $stmt->fetch()){
-        array_push($categories, $category);
-    }
-    return $categories;
-  }
+  $restaurants = array();
+  while($restaurant = $stmt->fetch()){
+      $thisRestaurant = new Restaurant(
+          $restaurant['name'],
+          $restaurant['category'],
+          $restaurant['address']
+      );
 
-  static function filterDishes(array &$dishes, string $filter) {
-    $newArr = array();
-    if($filter != "All"){
-      foreach($dishes as $dish){
-        if($dish->category === $filter)
-            array_push($newArr, $dish);
-      }
-      $dishes = $newArr;
-    }
+      $thisRestaurant->restaurantID = $restaurant['restaurantID'];
+      $thisRestaurant->imageID = $restaurant['imageID'];
+      array_push($restaurants, $thisRestaurant);
   }
+  return $restaurants;
+}
+
+static function registerOrder(PDO $db, Order $order) {;
+  $stmt = $db->prepare('INSERT INTO Orders VALUES(?,?,?,?,?,?)');
+  $stmt->execute(array($order->orderID, $order->state, $order->restaurantID, $order->dishID, $order->quantity, $order->username));
+}
 
       /**
        * @return int

@@ -13,5 +13,10 @@
         <a href="edit_user.php">Edit</a>
         <a href="change_password.php">Change Password</a>
     </div>
-</main>
-<?php } ;?>
+<?php }
+
+function output_user_nav(){;?>
+    <a href="my_orders.php?filter=All">MY ORDERS</a>
+    <a href="order.php">ORDER PAGE</a>
+    </main>
+<?php };?>

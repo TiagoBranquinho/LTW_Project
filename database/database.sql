@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS Image;
 DROP TABLE IF EXISTS FavouriteRestaurant;
 DROP TABLE IF EXISTS Category;
 DROP TABLE IF EXISTS DishCategory;
+DROP TABLE IF EXISTS OrderState;
 
 
 CREATE TABLE User
@@ -49,7 +50,7 @@ CREATE TABLE RestaurantOwner
 CREATE TABLE Orders
 (
     orderID       integer,
-    state         NVARCHAR(50) NOT NULL ,
+    state         NVARCHAR(50) NOT NULL CONSTRAINT fk_order_state REFERENCES OrderState (kind),
     restaurantID  integer CONSTRAINT fk_order_restaurant REFERENCES Restaurant (restaurantID) ,
     dishID        integer CONSTRAINT fk_order_dish REFERENCES Dish (dishID) ,
     quantity      integer NOT NULL,
@@ -103,6 +104,11 @@ CREATE TABLE DishCategory
   kind  NVARCHAR(50) PRIMARY KEY
 );
 
+CREATE TABLE OrderState
+(
+  kind  NVARCHAR(50) PRIMARY KEY
+);
+
 INSERT INTO User VALUES('alex', '9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684', 'email', 'rua sesamo', 91239192);
 
 INSERT INTO Image(path) VALUES('aa');
@@ -132,6 +138,12 @@ INSERT INTO Dish VALUES("1", "Frango Frito", "1", "1", "7.99", "Chicken", "0");
 INSERT INTO Dish VALUES("2", "Asas de Frango", "1", "1", "6.99", "Chicken", "0");
 INSERT INTO Dish VALUES("3", "Maminha", "1", "3", "5.99", "Meat", "0");
 INSERT INTO Dish VALUES("4", "Frango Assado", "1", "3", "3.99", "Chicken", "0");
+
+INSERT INTO OrderState VALUES("All");
+INSERT INTO OrderState VALUES("Received");
+INSERT INTO OrderState VALUES("Preparing");
+INSERT INTO OrderState VALUES("Ready");
+INSERT INTO OrderState VALUES("Delivered");
 
 
 
