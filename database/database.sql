@@ -108,6 +108,7 @@ INSERT INTO User VALUES('alex', '9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684', 'ema
 INSERT INTO Image(path) VALUES('aa');
 INSERT INTO Image(path) VALUES('bb');
 
+INSERT INTO Category VALUES("All");
 INSERT INTO Category VALUES('Gourmet');
 INSERT INTO Category VALUES('Asian');
 INSERT INTO Category VALUES('Italian');
@@ -119,6 +120,7 @@ INSERT INTO Restaurant VALUES(2, 2, 'McDonalds', 'Fast Food', 'Campus 2 andar, P
 INSERT INTO Restaurant VALUES(3, 2, 'Sabor Gaúcho', 'Cheap', 'Campus, 2 andar, Porto');
 INSERT INTO Restaurant VALUES(4, 2,'Cantina da Feup', 'Gourmet', 'Feup, Porto');
 
+INSERT INTO DishCategory VALUES("All");
 INSERT INTO DishCategory VALUES("Chicken");
 INSERT INTO DishCategory VALUES("Vegan");
 INSERT INTO DishCategory VALUES("Vegetarian");

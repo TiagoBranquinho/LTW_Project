@@ -9,12 +9,16 @@
                 <h4>Filter by Category:</h4>
                 <form action="action_restaurants_categories.php" method="POST">
                     <select name="restaurantCategory"> <!-- MISSING CSS -->
-                        <option selected value="All">All</option>
                         <?php $categories = Restaurant::getCategories(getDatabaseConnection());
                         
 
                         foreach($categories as $category){
-                            echo  "<option value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
+                            if($category['kind'] === $_GET['filter']){
+                                echo  "<option selected value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
+                            }
+                            else{
+                                echo  "<option value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
+                            }
                         };?>
                         
                     </select>
