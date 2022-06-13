@@ -19,7 +19,7 @@
     <?php };
 
     function output_restaurant_dishes(int $id, string $filter){
-        $dishes= Restaurant::getRestaurantDishes(getDatabaseConnection(), $id);?>
+        $dishes= Dish::getRestaurantDishes(getDatabaseConnection(), $id);?>
         <div class="restaurantFilter">
             <h4>Filter by Category:</h4>
             <form action="action_restaurant_dishes_category.php" method="POST">

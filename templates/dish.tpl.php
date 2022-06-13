@@ -1,5 +1,5 @@
 <?php
-function output_restaurant_dish(Dish $dish){;?>
+function output_restaurant_dish($dish){;?>
         <article>
                 <section>
                     <?php echo "<h4>" . $dish->name . "</h4>";
@@ -14,9 +14,9 @@ function output_restaurant_dish(Dish $dish){;?>
                 </section>
                 <section>
                     <button type="button">-</button>
-                    <?php echo "<input type='hidden' id='quantity' name='quantity" . $dish->id . "'>";?>
+                    <?php echo "<input type='hidden' id='quantity' name='quantity" . $dish->dishID . "'>";?>
                     <h4>0</h4>
-                    <?php echo "<input type='hidden' value='" . $dish->id . "' name='element" . $dish->id . "'>";?>
+                    <?php echo "<input type='hidden' value='" . $dish->dishID . "' name='element" . $dish->dishID . "'>";?>
                     <button type="button">+</button>
                 </section>
             </article>
