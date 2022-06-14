@@ -20,11 +20,19 @@
                 };?>
             </select>
             <h4>Only Favorite Restaurants</h4>
-            <input type="checkbox" name="favourite">
-            <button type="submit">Filter</button>
+            <label class="switch">
+            <?php if($_GET['fav'] ===  "on"){
+                    echo "<input type='checkbox' checked>";
+                 }
+                  else{
+                    echo "<input type='checkbox'>";
+                  };?>
+            <span class="slider round"></span>
+            </label>
+            <?php echo "<input type='hidden' name='fav' value='" . $_GET['fav'] . "'>";?>
+         <button type="submit">Filter</button>
         </form>
-        <?php $orderList = Order::getUserOrders(getDatabaseConnection(), $username);
-        Order::filterOrders($orderList, $_GET['filter']);
-        print_r($orderList);?>
+        <?php $orderList = Order::getUserOrders(getDatabaseConnection(), $username, $_GET['fav']);
+        Order::filterOrders($orderList, $_GET['filter']);?>
     </div>
     <?php };?>

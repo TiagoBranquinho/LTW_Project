@@ -35,8 +35,20 @@ static function filterOrders(array &$orderList, string $filter) {
     $orderList = $newArr;
   }
 }
-static function getUserOrders(PDO $db, string $username) {
-  $stmt = $db->prepare('SELECT * FROM Orders where username = ?');
+static function getUserOrders(PDO $db, string $username, string $favourite) {
+
+  if($favourite === "false"){
+    $querry = 'SELECT *
+    FROM Orders
+    WHERE Orders.username = ?';
+  }
+  else{
+    $querry = 'SELECT *
+    FROM Orders
+    INNER JOIN FavouriteRestaurant ON Orders.restaurantID=FavouriteRestaurant.restaurantID
+    WHERE Orders.username = ?';
+  }
+  $stmt = $db->prepare($querry);
   $stmt->execute(array($username));
 
   $orders = array();

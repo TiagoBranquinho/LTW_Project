@@ -16,7 +16,7 @@
 <?php }
 
 function output_user_nav(){;?>
-    <a href="my_orders.php?filter=All">MY ORDERS</a>
+    <a href="my_orders.php?filter=All&fav=off">MY ORDERS</a>
     <a href="order.php">ORDER PAGE</a>
     </main>
 <?php };?>

@@ -18,6 +18,7 @@ if(!isset($_SESSION)) { session_start(); };
                 <script src="../scripts/changePass.js" defer></script>
                 <script src="../scripts/updateOrderForm.js" defer></script>
                 <script src="../scripts/updateOrderQuantity.js" defer></script>
+                <script src="../scripts/checkFavouriteRestaurantFilter.js" defer></script>
 
             </head>
             <body>
