@@ -13,16 +13,14 @@
   if ($user) {
     $_SESSION['username'] = $user->username;
       $ro = RestaurantOwner::getRO($_POST['username']);
-      $customer = User::getCustomer($_SESSION['username']);
+      $customer = User::getCustomer($_POST['username']);
       if($ro && $customer) {
           $_SESSION['restaurantOwner'] = true;
           $_SESSION['customer'] = true;
       } else if($ro) {
           $_SESSION['restaurantOwner'] = true;
-          $_SESSION['customer'] = false;
       } else if($customer) {
           $_SESSION['customer'] = true;
-          $_SESSION['restaurantOwner'] = false;
       }
     header('Location: user.php');
   }

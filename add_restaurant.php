@@ -1,5 +1,7 @@
 <?php
 include_once('templates/common.tpl.php');
+include_once('database/restaurant.class.php');
+include_once('database/connection.db.php');
 output_header();
 ?>
 <main>
@@ -12,15 +14,13 @@ output_header();
             </div>
             <div class="inputbox">
                 <label for="restaurantCategory">Restaurant Category*:</label>
-                <input type="text" name="restaurantCategory" placeholder="Restaurant Category" required="true" list="categories">
-                <datalist id="categories">
-                    <option value="Buffet">
-                    <option value="Cafe">
-                    <option value="Casual dining">
-                    <option value="Fast-food">
-                    <option value="Fine dining">
-                    <option value="Take-away">
-                </datalist>
+                <select id="restaurantCategory" name="restaurantCategory" required="true">
+                    <?php $categories = Restaurant::getCategories(getDatabaseConnection());
+                    array_shift($categories);
+                    foreach($categories as $category){
+                        echo "<option value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
+                    }?>
+                </select>
             </div>
             <div class="inputbox">
                 <label for="restaurantAddress">Address*:</label>
