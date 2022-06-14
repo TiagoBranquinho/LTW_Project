@@ -6,7 +6,7 @@
     include_once('templates/dish.tpl.php');
     function output_restaurant_info(int $id) {
         $restaurant = Restaurant::getRestaurant(getDatabaseConnection(), $id);
-        $rating = Restaurant::getRating(getDatabaseConnection(), $id);
+        $rating = floatval(Restaurant::getRating(getDatabaseConnection(),$restaurant->restaurantID));
         $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$_SESSION['username']);
         $imagePath = Image::getImage(getDatabaseConnection(),$restaurant->imageID)->getPath()?>
         <main>
