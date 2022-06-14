@@ -118,7 +118,7 @@ button, .restaurant #buttons a, .userdata a{
     grid-column-start: 2;
 }
 
-input[type=text], input[type=email], input[type=password] {
+input[type=text], input[type=email], input[type=password], input[type=number], select {
     height: 3em;
     border-radius: 2em;
     border-style: solid;
@@ -290,6 +290,8 @@ ul{
 
 .restaurant #images {
     margin: 1px;
+    max-height: 240px;
+    max-width: 200px;
 }
 
 .restaurant #buttons a{
@@ -331,6 +333,11 @@ ul{
 }
 
 #registerRO > .register > .inputbox:last-of-type {
+    text-align: center;
+    width: 100%;
+}
+
+#registerRestaurant > .register > .inputbox:last-of-type {
     text-align: center;
     width: 100%;
 }
@@ -445,7 +452,14 @@ fieldset > legend {
     height: 0;
   }
 
-
+.myRestaurants {
+    display: flex;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 60%;
+}
 
   /* Rounded sliders */
   .slider.round {

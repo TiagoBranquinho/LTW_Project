@@ -4,8 +4,9 @@
     include_once('database/dish.class.php');
     include_once('templates/dish.tpl.php');
 
-    function output_restaurant_info(int $id){
-        $restaurant = Restaurant::getRestaurant(getDatabaseConnection(), $id);?>
+    function output_restaurant_info(int $id) {
+        $restaurant = Restaurant::getRestaurant(getDatabaseConnection(), $id);
+        $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$_SESSION['username']);?>
         <main>
             <?php echo "<h1>" . $restaurant->name . "</h1>";?>
             <div class="restaurantHeader">
@@ -15,11 +16,21 @@
                     <h3>Rating: 4.2</h3>  <!-- NOT WORKING -->
                 </div>
                 <img src="https://picsum.photos/400/300" alt="logopic">
+                <?php if($isOwner) { ?>
+                    <a href="edit_restaurant.php?id=<?php echo $restaurant->getRestaurantID(getDatabaseConnection(),
+                        $restaurant->getName(),$restaurant->getCategory(), $restaurant->getAddress())?>">
+                        <button>Edit</button>
+                    </a>
+                    <a href="add_dish.php">
+                        <button>Add dish</button>
+                    </a>
+                <?php } ?>
             </div>
     <?php };
 
     function output_restaurant_dishes(int $id, string $filter){
-        $dishes= Restaurant::getRestaurantDishes(getDatabaseConnection(), $id);?>
+        $dishes= Restaurant::getRestaurantDishes(getDatabaseConnection(), $id);
+        $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$_SESSION['username'])?>
         <div class="restaurantFilter">
             <h4>Filter by Category:</h4>
             <form action="action_restaurant_dishes_category.php" method="POST">
@@ -43,6 +54,7 @@
             <?php foreach($dishes as $dish){
                 output_restaurant_dish($dish);
             };?>
+            <?php if (!$isOwner) { ?>
             <div>
                 <div class='price'>
                     <h3>Total: </h3>
@@ -50,6 +62,7 @@
                 </div>
                 <button type='submit'>Checkout</button>
             </div>
+            <?php } ?>
         </form>
     </main>
     <?php };?>

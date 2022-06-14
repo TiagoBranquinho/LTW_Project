@@ -22,7 +22,7 @@ CREATE TABLE User
     username         NVARCHAR(120) PRIMARY KEY ,
     password         text NOT NULL ,
     email            NVARCHAR(60) NOT NULL ,
-    address          NVARCHAR(70) NOT NULL UNIQUE,
+    address          NVARCHAR(70) NOT NULL,
     phoneNumber      NVARCHAR(24) NOT NULL
 );
 
@@ -37,7 +37,7 @@ CREATE TABLE Restaurant
     imageID       integer CONSTRAINT fk_restaurant_image REFERENCES Image (imageID) ,
     name          NVARCHAR(150) NOT NULL ,
     category      NVARCHAR(50) NOT NULL CONSTRAINT fk_restaurant_category REFERENCES Category (kind) ,
-    address       NVARCHAR(70) NOT NULL UNIQUE
+    address       NVARCHAR(70) NOT NULL
 );
 
 CREATE TABLE RestaurantOwner
@@ -104,9 +104,12 @@ CREATE TABLE DishCategory
 );
 
 INSERT INTO User VALUES('alex', '9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684', 'email', 'rua sesamo', 91239192);
+INSERT INTO Customer VALUES ('alex');
 
 INSERT INTO Image(path) VALUES('aa');
 INSERT INTO Image(path) VALUES('bb');
+INSERT INTO Image(path) VALUES('cc');
+INSERT INTO Image(path) VALUES('dd');
 
 INSERT INTO Category VALUES('Gourmet');
 INSERT INTO Category VALUES('Asian');
@@ -116,21 +119,20 @@ INSERT INTO Category VALUES('Cheap');
 
 INSERT INTO Restaurant VALUES(1, 1, 'KFC', 'Fast Food', 'Rua do Porto, Porto');
 INSERT INTO Restaurant VALUES(2, 2, 'McDonalds', 'Fast Food', 'Campus 2 andar, Porto');
-INSERT INTO Restaurant VALUES(3, 2, 'Sabor Gaúcho', 'Cheap', 'Campus, 2 andar, Porto');
-INSERT INTO Restaurant VALUES(4, 2,'Cantina da Feup', 'Gourmet', 'Feup, Porto');
+INSERT INTO Restaurant VALUES(3, 3, 'Sabor Gaúcho', 'Cheap', 'Campus, 2 andar, Porto');
+INSERT INTO Restaurant VALUES(4, 4,'Cantina da Feup', 'Gourmet', 'Feup, Porto');
 
-INSERT INTO DishCategory VALUES("Chicken");
-INSERT INTO DishCategory VALUES("Vegan");
-INSERT INTO DishCategory VALUES("Vegetarian");
-INSERT INTO DishCategory VALUES("Sushi");
-INSERT INTO DishCategory VALUES("Meat");
-INSERT INTO DishCategory VALUES("Fish");
+INSERT INTO DishCategory VALUES('Chicken');
+INSERT INTO DishCategory VALUES('Vegan');
+INSERT INTO DishCategory VALUES('Vegetarian');
+INSERT INTO DishCategory VALUES('Sushi');
+INSERT INTO DishCategory VALUES('Meat');
+INSERT INTO DishCategory VALUES('Fish');
 
-INSERT INTO Dish VALUES("1", "Frango Frito", "1", "1", "7.99", "Chicken", "0");
-INSERT INTO Dish VALUES("2", "Asas de Frango", "1", "1", "6.99", "Chicken", "0");
-INSERT INTO Dish VALUES("3", "Maminha", "1", "3", "5.99", "Meat", "0");
-INSERT INTO Dish VALUES("4", "Frango Assado", "1", "3", "3.99", "Chicken", "0");
-
+INSERT INTO Dish VALUES(1, 'Frango Frito', 1, 1, 7.99, 'Chicken', 0);
+INSERT INTO Dish VALUES(2, 'Asas de Frango', 1, 1, 6.99, 'Chicken', 0);
+INSERT INTO Dish VALUES(3, 'Maminha', 1, 3, 5.99, 'Meat', 0);
+INSERT INTO Dish VALUES(4, 'Frango Assado', 1, 3, 3.99, 'Chicken', 0);
 
 
 COMMIT TRANSACTION;

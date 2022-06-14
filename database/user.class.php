@@ -16,11 +16,11 @@
       $this->phoneNumber = $phoneNumber;
     }
 
-    function getPassword(PDO $db){
-      $stmt = $db->prepare('SELECT password from user.password where username = ?');
-      $stmt->execute([$username]);
-      $pass = $stmt->fecth();
-      return pass;
+    static function getCustomer(string $username) {
+        $db = getDatabaseConnection();
+        $stmt = $db->prepare('SELECT username FROM Customer WHERE username = ?');
+        $stmt->execute([$username]);
+        return $stmt->fetch();
     }
 
     public function changePass(PDO $db, string $newPass){
@@ -53,8 +53,6 @@
               $user['email'],
               $user['address'],
               $user['phoneNumber'],
-              $user['restaurantOwner']?true:false,
-              $user['customer']?true:false
           );
       }
       else return null;

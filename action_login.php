@@ -4,6 +4,7 @@
 
   include_once('database/connection.db.php');
   include_once('database/user.class.php');
+  include_once ('database/restaurantOwner.class.php');
 
   $db = getDatabaseConnection();
 
@@ -11,6 +12,18 @@
 
   if ($user) {
     $_SESSION['username'] = $user->username;
+      $ro = RestaurantOwner::getRO($_POST['username']);
+      $customer = User::getCustomer($_SESSION['username']);
+      if($ro && $customer) {
+          $_SESSION['restaurantOwner'] = true;
+          $_SESSION['customer'] = true;
+      } else if($ro) {
+          $_SESSION['restaurantOwner'] = true;
+          $_SESSION['customer'] = false;
+      } else if($customer) {
+          $_SESSION['customer'] = true;
+          $_SESSION['restaurantOwner'] = false;
+      }
     header('Location: user.php');
   }
   else{

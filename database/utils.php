@@ -6,5 +6,10 @@
     $stmt->execute();
     return $stmt->fetch()['ret'] + 1;
 }
+
+function getDishCategories(PDO $db) {
+  $stmt = $db->prepare('SELECT * FROM DishCategory');
+  $stmt->execute();
+}
 ?>
     

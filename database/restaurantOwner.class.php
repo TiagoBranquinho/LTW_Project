@@ -1,23 +1,43 @@
 <?php
     declare(strict_types = 1);
     include_once("database/user.class.php");
+    include_once("database/image.class.php");
 
     class RestaurantOwner extends User {
         private string $restaurantID;
 
-        static function getROWithPassword(PDO $db, string $username, string $password){
-            $stmt = $db->prepare('SELECT * FROM User WHERE lower(username) = ? AND password = ? AND ? IN RestaurantOwner');
-            $stmt->execute(array(strtolower($username), sha1($password),strtolower($username)));
-        
-            if ($restaurantOwner = $stmt->fetch()){
-                return new RestaurantOwner(
-                    $restaurantOwner['username'],
-                    $restaurantOwner['email'],
-                    $restaurantOwner['address'],
-                    $restaurantOwner['phoneNumber'],
-                );
-            }
-            else return null;
+        static function getRO(string $username) {
+            $db = getDatabaseConnection();
+            $stmt = $db->prepare('SELECT username FROM RestaurantOwner WHERE username = ?');
+            $stmt->execute([strtolower($username)]);
+            return $stmt->fetch();
+        }
+
+        /**
+         * @return string
+         */
+        public function getRestaurantID(): string
+        {
+            return $this->restaurantID;
+        }
+
+        /**
+         * @param string $restaurantID
+         */
+        public function setRestaurantID(string $restaurantID): void
+        {
+            $this->restaurantID = $restaurantID;
+        }
+
+        static function isUserOwner(PDO $db, int $id, string $username): bool {
+            $stmt  = $db->prepare('SELECT * 
+                                     FROM RestaurantOwner
+                                     WHERE restaurantID = ? AND username = ?');
+            $stmt->execute([$id,$username]);
+
+            if($stmt->fetch() == null) return false;
+
+            return true;
         }
 
         static function registerRestaurantOwner(PDO $db, RestaurantOwner $restaurantOwner, Restaurant $restaurant, bool $customer): bool {
@@ -29,29 +49,28 @@
                 return false;
             } else {
 
-                $restaurantStmt = $db->prepare('INSERT INTO Restaurant(imageID, name, category, address) VALUES(?,?,?,?)');
-                $restaurantStmt = $restaurantStmt->execute(
-                    array(1, $restaurant->getName(),
-                        $restaurant->getCategory(),
-                        $restaurant->getAddress())
-
-                );
-
-                $filename = $_FILES['restaurantImage']['name'];
                 $tempname = $_FILES['restaurantImage']['tmp_name'];
                 $folder =  "img/restaurants/".$restaurant->getName();
                 mkdir($folder);
                 $imagePath = $folder."/".$restaurant->getName().".png";
 
-                $insertFilenameStmt = $db->prepare('INSERT INTO Image VALUES(?,?)');
-                $insertFilenameStmt->execute(array(45,$imagePath));
-
                 if(move_uploaded_file($tempname,$imagePath)) {
                     ?> <script> alert('File uploaded!') </script> <?php
+                    $insertFilenameStmt = $db->prepare('INSERT INTO Image(path) VALUES(?)');
+                    $insertFilenameStmt->execute(array($imagePath));
                 } else {
                     ?> <script> alert('File upload fail!') </script> <?php
                 }
 
+
+
+                $restaurantStmt = $db->prepare('INSERT INTO Restaurant(imageID, name, category, address) VALUES(?,?,?,?)');
+                $restaurantStmt = $restaurantStmt->execute(
+                    array(Image::getLastestImageID($db), $restaurant->getName(),
+                        $restaurant->getCategory(),
+                        $restaurant->getAddress())
+
+                );
 
                 if(!$restaurantStmt) {
                     return false;
@@ -77,7 +96,7 @@
                         $restaurantOwnerStatement = $db->prepare('INSERT INTO RestaurantOwner VALUES(?,?)');
                         $restaurantOwnerStatement->execute(
                             array(
-                                $restaurantOwner->username,
+                                strtolower($restaurantOwner->username),
                                 $restaurant->getRestaurantID($db,$restaurant->getName(),$restaurant->getCategory(),$restaurant->getAddress())
                             )
                         );

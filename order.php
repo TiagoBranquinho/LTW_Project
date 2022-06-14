@@ -17,40 +17,40 @@
             <article>
                 <section>
                     <h2>Streetwise two</h2>
-                    <h4>Price: 3,99$</h3>
-                    <h4>Category: Chicken</h3>
+                    <h3>Price: 3,99$</h3>
+                    <h3>Category: Chicken</h3>
                 </section>
                 <section>
                     <img src="https://picsum.photos/120/100" alt="logopic">
                 </section>
                 <section>
-                    <h4>Quantity: 2</h3>
+                    <h3>Quantity: 2</h3>
                 </section>
             </article>
             <article>
                 <section>
                     <h2>Streetwise two</h2>
-                    <h4>Price: 3,99$</h3>
-                    <h4>Category: Chicken</h3>
+                    <h3>Price: 3,99$</h3>
+                    <h3>Category: Chicken</h3>
                 </section>
                 <section>
                     <img src="https://picsum.photos/120/100" alt="logopic">
                 </section>
                 <section>
-                    <h4>Quantity: 2</h3>
+                    <h3>Quantity: 2</h3>
                 </section>
             </article>
             <article>
                 <section>
                     <h2>Streetwise two</h2>
-                    <h4>Price: 3,99$</h3>
-                    <h4>Category: Chicken</h3>
+                    <h3>Price: 3,99$</h3>
+                    <h3>Category: Chicken</h3>
                 </section>
                 <section>
                     <img src="https://picsum.photos/120/100" alt="logopic">
                 </section>
                 <section>
-                    <h4>Quantity: 2</h3>
+                    <h3>Quantity: 2</h3>
                 </section>
             </article>
         </div>
