@@ -4,5 +4,6 @@
     if(!isset($_SESSION['username']) && $_POST["fav"] === "on"){
         header('Location: login.php');
     }
-    header('Location: restaurants.php?filter=' . $_POST["restaurantCategory"] . '&fav=' . $_POST['fav']);
+    else
+        header('Location: restaurants.php?filter=' . $_POST["restaurantCategory"] . '&fav=' . $_POST['fav']);
 ?>

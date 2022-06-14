@@ -38,7 +38,11 @@
                 </form>
             </div>
             <ul id="restaurants">
-            <?php $restaurantList = Restaurant::getRestaurants(getDatabaseConnection(), $_SESSION['username'], $_GET['fav']);
+            <?php if(!isset($_SESSION['username']))
+                $username = "";
+                else
+                  $username = $_SESSION['username'];
+            $restaurantList = Restaurant::getRestaurants(getDatabaseConnection(), $username, $_GET['fav']);
             Restaurant::filterRestaurants($restaurantList, $filter);
             foreach($restaurantList as $restaurantItem) {
                 $imageObject = Image::getImage(getDatabaseConnection(),$restaurantItem->imageID);

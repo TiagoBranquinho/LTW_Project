@@ -17,7 +17,7 @@
             <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn">&#8595</button>
   <div id="myDropdown" class="dropdown-content">
-    <?php $restaurants = Restaurant::getRestaurants(getDatabaseConnection());
+    <?php $restaurants = Restaurant::getRestaurants(getDatabaseConnection(), "none", "off");
     foreach($restaurants as $restaurant){?>
         <div id="restaurantIndex">
         <?php echo "<a href='restaurant.php?filter=All&id=" . $restaurant->restaurantID . "'>" . $restaurant->name . " - " . $restaurant->category . "</a>";?>

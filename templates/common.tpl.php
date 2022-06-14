@@ -37,20 +37,20 @@ if(!isset($_SESSION)) { session_start(); }
                     </section>
                     <section id="menu">
                         <a href="index.php"><h3>Home</h3></a>
-                        <?php if($_SESSION['restaurantOwner'] && $_SESSION['customer']) {?>
-                            <a href="restaurants.php?filter=All"><h3>Restaurants</h3></a>
+                        <?php if(isset($_SESSION['restaurantOwner']) && isset($_SESSION['customer'])) {?>
+                            <a href="restaurants.php?filter=All&fav=off"><h3>Restaurants</h3></a>
                             <a href="user.php"><h3><?php echo $_SESSION['username'];?></h3></a>
                             <a href="my_restaurants.php"><h3> <?php echo 'My Restaurants'; ?></h3></a>
                             <a href="action_logout.php"><h3>Logout</h3></a>
-                        <?php } else if($_SESSION['customer']){ ?>
-                            <a href="restaurants.php?filter=All"><h3>Restaurants</h3></a>
+                        <?php } else if(isset($_SESSION['customer'])){ ?>
+                            <a href="restaurants.php?filter=All&fav=off"><h3>Restaurants</h3></a>
                             <a href="user.php"><h3><?php echo $_SESSION['username'];?></h3></a>
                             <a href="action_logout.php"><h3>Logout</h3></a>
-                        <?php } else if($_SESSION['restaurantOwner']) {?>
+                        <?php } else if(isset($_SESSION['restaurantOwner'])) {?>
                             <a href="my_restaurants.php"><h3> <?php echo 'My Restaurants'; ?></h3></a>
                             <a href="action_logout.php"><h3>Logout</h3></a>
                         <?php } else { ?>
-                            <a href="restaurants.php?filter=All"><h3>Restaurants</h3></a>
+                            <a href="restaurants.php?filter=All&fav=off"><h3>Restaurants</h3></a>
                             <a href="register.php"><h3>Register</h3></a>
                             <a href="login.php"><h3>Login</h3></a>
                         <?php };?>
