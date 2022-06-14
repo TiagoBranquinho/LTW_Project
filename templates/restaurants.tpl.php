@@ -2,27 +2,33 @@
     include_once('database/connection.db.php');
     include_once('database/restaurant.class.php');
     include_once ('database/image.class.php');
-    function output_restaurant_list() { ;?>
+
+    function output_restaurant_list(string $filter){;?>
         <main>
             <div class="restaurantCategory">
                 <h1>Restaurants</h1>
                 <h4>Filter by Category:</h4>
                 <form action="action_restaurants_categories.php" method="POST">
                     <select name="restaurantCategory"> <!-- MISSING CSS -->
-                        <option disabled selected value><h6>Category</h6></option>
-                        <option value="All">All</option>
-                        <option value="Gourmet">Gourmet</option>
-                        <option value="Asian">Asian</option>
-                        <option value="Italian">Italian</option>
-                        <option value="Fast Food">Fast Food</option>
-                        <option value="Cheap">Cheap</option>
+                        <?php $categories = Restaurant::getCategories(getDatabaseConnection());
+
+
+                        foreach($categories as $category){
+                            if($category['kind'] === $filter){
+                                echo  "<option selected value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
+                            }
+                            else{
+                                echo  "<option value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
+                            }
+                        };?>
+
                     </select>
                     <button type="submit">Filter</button>
                 </form>
             </div>
             <ul id="restaurants">
             <?php $restaurantList = Restaurant::getRestaurants(getDatabaseConnection());
-            Restaurant::filterRestaurants($restaurantList, $_GET['filter']);
+            Restaurant::filterRestaurants($restaurantList, $filter);
             foreach($restaurantList as $restaurantItem) {
                 $imageObject = Image::getImage(getDatabaseConnection(),$restaurantItem->imageID);
                 $imagePath = $imageObject->getPath();
@@ -47,7 +53,7 @@
                 </section>
                 <section id="buttons">
                     <?php echo "<a href='restaurant.php?id=".$restaurant->restaurantID."&filter=All'>Menu</a>";?>
-                    <a>Reviews</a>  <!-- NOT DONE YET -->
+                    <?php echo "<a href='reviews.php?restID=".$restaurant->restaurantID."'>Reviews</a>";?>
                 </section>
             </article>
         </li>

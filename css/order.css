@@ -19,6 +19,12 @@
     margin-top: 2em;
 }
 
+.dishes section:nth-child(1){
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 .ordercheckout article{
     text-align: center;
     padding: 1em 1.5em 0.5em 1.5em;
@@ -48,4 +54,71 @@
     border-radius: 25px;
     height: fit-content;
     width: fit-content;
+}
+
+.ordercheckout .orderResume{
+    display: flex;
+    flex-direction: column;
+    gap:  2em;
+    align-items: center;
+}
+
+.ordercheckout .orderResume *{
+    width: fit-content;
+}
+
+.orderFilter{
+    display: flex;
+    margin: 3em 8em 3em 0;
+}
+
+.orderFilter > form > h4 {
+    margin: 0 1em 0 1em;
+}
+
+.orderFilter button{
+    margin-left: 1em;
+}
+
+.orderFilter > form{
+    display: flex;
+}
+
+.orderFilter h4{
+    margin: 0 1em 0 0;
+    
+}
+
+.orderFilter h1{
+    flex-grow: 1;
+}
+
+.orderFilter *{
+    align-self: center;
+}
+
+#orders{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#orders li{
+    text-align: center;
+    padding: 1.5em;
+    border: 2px;
+    border-style: solid;
+    border-color: #bf3100;
+    border-radius: 25px;
+    margin-bottom: 2em;
+    width: 45%;
+}
+
+#orders .order section:nth-child(2){
+    display: flex;
+    justify-content: space-around;
+}
+
+.order h2{
+    margin-top: 0;
 }

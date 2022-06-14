@@ -6,10 +6,10 @@
     <form class="payment" action="action_payment.php" method="GET">
         <h1>Payment Method</h1>
         <h3>Credit Card</h3>
-        <label class="switch">
+        <!-- <label class="switch">
             <input type="checkbox">
             <span class="slider round"></span>
-        </label>
+        </label> -->
         <label class="hidden"><strong>Titular name:</strong>
             <input type="text" name="titular" id="aa">
         </label>

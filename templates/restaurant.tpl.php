@@ -29,20 +29,21 @@
     <?php };
 
     function output_restaurant_dishes(int $id, string $filter){
-        $dishes= Restaurant::getRestaurantDishes(getDatabaseConnection(), $id);
+        $dishes= Dish::getRestaurantDishes(getDatabaseConnection(), $id);?>
         $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$_SESSION['username'])?>
         <div class="restaurantFilter">
             <h4>Filter by Category:</h4>
             <form action="action_restaurant_dishes_category.php" method="POST">
                 <select name="dishCategory">
-                    <option disabled selected value><h6>Category</h6></option>
-                    <option value='All'>All</option>
-                    <option value='Chicken'>Chicken</option>
-                    <option value='Vegan'>Vegan</option>
-                    <option value='Vegetarian'>Vegetarian</option>
-                    <option value='Sushi'>Sushi</option>
-                    <option value='Meat'>Meat</option>
-                    <option value='Fish'>Fish</option>
+                    <?php $categories = Dish::getCategories(getDatabaseConnection());
+                    foreach($categories as $category){
+                        if($category['kind'] === $filter){
+                            echo  "<option selected value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
+                        }
+                        else{
+                            echo  "<option value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
+                        }
+                    };?>
                 </select>
                 <?php echo "<input type='hidden' name='id' value='". $id . "'>";?>
                 <button type='submit'>Filter</button>
@@ -60,6 +61,8 @@
                     <h3>Total: </h3>
                     <h3 class='value'>00.00</h3>
                 </div>
+                <?php echo "<input type='hidden' name='restaurantID' value='". $id . "'>";?>
+                <?php echo "<input type='hidden' name='resquestsNr' value='" . sizeof($dishes) . "'>";?>
                 <button type='submit'>Checkout</button>
             </div>
             <?php } ?>

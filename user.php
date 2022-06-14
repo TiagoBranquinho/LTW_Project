@@ -5,5 +5,6 @@
     include_once('templates/user.tpl.php');
     output_header();
     output_user_data();
+    output_user_nav();
     output_footer();
 ?>

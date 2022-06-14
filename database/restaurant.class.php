@@ -112,38 +112,16 @@
 
     $restaurant = $stmt->fetch();
     $thisRestaurant = new Restaurant(
-            $restaurant['name'],
-            $restaurant['category'],
-            $restaurant['address']
-    );
-
+    $restaurant['name'],
+    $restaurant['category'],
+    $restaurant['address']);
     $thisRestaurant->restaurantID = $restaurant['restaurantID'];
     $thisRestaurant->imageID = $restaurant['imageID'];
-
     return $thisRestaurant;
 }
 
-static function getRestaurantDishes(PDO $db, int $id) {
-    $stmt = $db->prepare('SELECT * FROM Dish WHERE restaurantID = ?');
-    $stmt->execute(array($id));
-
-    $dishes = array();
-    while($dish = $stmt->fetch()){
-        array_push($dishes, new Dish(
-            $dish['dishID'],
-            $dish['name'],
-            $dish['imageID'],
-            $dish['restaurantID'],
-            $dish['price'],
-            $dish['category'],
-            $dish['discount']
-        ));
-    }
-    return $dishes;
-}
-
   static function getCategories(PDO $db) {
-    $stmt = $db->prepare('SELECT * FROM Category');
+    $stmt = $db->prepare('SELECT kind FROM Category ORDER BY kind ASC');
     $stmt->execute();
 
     $categories = array();

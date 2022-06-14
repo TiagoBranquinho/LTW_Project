@@ -16,6 +16,14 @@
       $this->phoneNumber = $phoneNumber;
     }
 
+    function getPassword(PDO $db)
+    {
+        $stmt = $db->prepare('SELECT password from user where username = ?');
+        $stmt->execute([$this->username]);
+        $pass = $stmt->fetch();
+        return $pass['password'];
+    }
+
     static function getCustomer(string $username) {
         $db = getDatabaseConnection();
         $stmt = $db->prepare('SELECT username FROM Customer WHERE username = ?');

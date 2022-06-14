@@ -12,9 +12,6 @@
             <label><strong>Username:</strong>
             <?php echo '<input type="text" name="username" value="'. $user->username . '">';?>
         </label>
-            <label><strong>Password:</strong>
-                <input type="password" name="password" placeholder="password(cant acess)">
-            </label>
             <label><strong>Email:</strong>
                 <?php echo '<input type="email" name="email" value="' . $user->email . '">';?>
             </label>
