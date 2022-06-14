@@ -118,6 +118,10 @@ li #name{
     align-items: flex-end;
 }
 
+.review #comment:first-of-type{
+    font-size: larger;
+}
+
 .review #user{
     font-family: sans-serif;
     font-size: larger;
@@ -131,4 +135,62 @@ li #name{
 
 #name > h3:nth-child(3) > span{
     padding-left: 0.4em;
+}
+
+.newReview #newReviewForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-around;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+.newReview{
+    padding: 1em;
+    border-radius: 2em;
+    border-style: solid;
+    border-width: 0.1em;
+    border-color: rgba(183, 180, 174, 0.805);
+    justify-content: space-around;
+}
+
+.newReview #input{
+    padding: 0.5em 0em 0.5em 0em;
+}
+
+.newReview .rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.newReview .rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.newReview .rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.newReview .rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.newReview .rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.newReview .rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.newReview .rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
 }

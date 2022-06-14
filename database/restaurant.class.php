@@ -78,6 +78,21 @@
     return $thisRestaurant;
 }
 
+  static function isRestaurantUsedBy(PDO $db, string $username, int $restaurantID) {
+    
+    $stmt = $db->prepare('SELECT DISTINCT Restaurant.restaurantID
+                          FROM Restaurant
+                          INNER JOIN Orders ON Orders.restaurantID=Restaurant.restaurantID
+                          WHERE Orders.username = ?');
+    $stmt->execute(array($username));
+    while($rest = $stmt->fetch()){
+      if ($rest['restaurantID'] === $restaurantID){
+        return true;
+      }
+    }
+    return false;
+  }
+
   static function getCategories(PDO $db) {
     $stmt = $db->prepare('SELECT kind FROM Category ORDER BY kind ASC');
     $stmt->execute();
