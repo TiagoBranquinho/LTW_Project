@@ -99,6 +99,16 @@ static function getRestaurantDishes(PDO $db, int $id) {
       $dishes = $newArr;
     }
   }
+
+  static function updateDishImagePath(PDO $db, int $restID) {
+    $restaurant = Restaurant::getRestaurant($db, $restID);
+    $dishes = Dish::getRestaurantDishes($db, $restID);
+    foreach($dishes as $dish){
+      $imagePath = "img/restaurants/". $restaurant->name ."/".$dish->name.".png";
+      $stmt = $db->prepare('UPDATE Image SET path=? WHERE imageID=?');
+      $stmt->execute(array($imagePath, $dish->imageID));
+    }
+  }
 }
 
 ?>

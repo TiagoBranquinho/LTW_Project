@@ -23,6 +23,7 @@
             $insertFilenameStmt = $db->prepare('UPDATE Image SET path = ? WHERE imageID = ?');
             $insertFilenameStmt->execute(array($newImagePath, $image->getId()));
         }
+
     }
     if(!empty($_POST['restaurantCategory'])) {
         $restaurant->category = $_POST['restaurantCategory'];
@@ -38,4 +39,5 @@
 
     header('Location: restaurant.php?id='.$restaurant->restaurantID.'&filter=All');
     Restaurant::editRestaurant($db, $restaurant, $restaurant->imageID);
+    Dish::updateDishImagePath($db, $restaurant->restaurantID);
 ?>
