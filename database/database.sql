@@ -115,13 +115,6 @@ CREATE TABLE OrderState
   kind  NVARCHAR(50) PRIMARY KEY
 );
 
-INSERT INTO User VALUES('alex', '9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684', 'email', 'rua sesamo', 91239192);
-INSERT INTO Customer VALUES ('alex');
-
-INSERT INTO Image(path) VALUES('aa');
-INSERT INTO Image(path) VALUES('bb');
-INSERT INTO Image(path) VALUES('cc');
-INSERT INTO Image(path) VALUES('dd');
 
 INSERT INTO Category VALUES('All');
 INSERT INTO Category VALUES('Gourmet');
@@ -129,11 +122,6 @@ INSERT INTO Category VALUES('Asian');
 INSERT INTO Category VALUES('Italian');
 INSERT INTO Category VALUES('Fast Food');
 INSERT INTO Category VALUES('Cheap');
-
-INSERT INTO Restaurant VALUES(1, 1, 'KFC', 'Fast Food', 'Rua do Porto, Porto');
-INSERT INTO Restaurant VALUES(2, 2, 'McDonalds', 'Fast Food', 'Campus 2 andar, Porto');
-INSERT INTO Restaurant VALUES(3, 3, 'Sabor Gaúcho', 'Cheap', 'Campus, 2 andar, Porto');
-INSERT INTO Restaurant VALUES(4, 4,'Cantina da Feup', 'Gourmet', 'Feup, Porto');
 
 INSERT INTO DishCategory VALUES("All");
 INSERT INTO DishCategory VALUES("Chicken");
@@ -143,29 +131,14 @@ INSERT INTO DishCategory VALUES("Sushi");
 INSERT INTO DishCategory VALUES("Meat");
 INSERT INTO DishCategory VALUES("Fish");
 
-INSERT INTO Dish VALUES("1", "Frango Frito", "1", "1", "7.99", "Chicken", "0");
-INSERT INTO Dish VALUES("2", "Asas de Frango", "1", "1", "6.99", "Chicken", "0");
-INSERT INTO Dish VALUES("3", "Maminha", "1", "3", "5.99", "Meat", "0");
-INSERT INTO Dish VALUES("4", "Frango Assado", "1", "3", "3.99", "Chicken", "0");
-
 INSERT INTO OrderState VALUES("All");
 INSERT INTO OrderState VALUES("Received");
 INSERT INTO OrderState VALUES("Preparing");
 INSERT INTO OrderState VALUES("Ready");
 INSERT INTO OrderState VALUES("Delivered");
 
-INSERT INTO User VALUES("tiago", "9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684", "tiago@gmail.com", "rua", "999999999");
-
-INSERT INTO FavouriteRestaurant VALUES(1, "tiago");
-
-INSERT INTO Review VALUES(1, 1, "alex", 1, "Comida bue boa", "2022-06-10", "4");
-INSERT INTO Review VALUES(2, 3, "alex", 1, "Comida top xuxa", "2022-06-13", "5");
-
-INSERT INTO Comment VALUES(1,2,"alex","otimo bueda bom mesmo");
-INSERT INTO Comment VALUES(2,2,"alex","carninha muito top");
-INSERT INTO Comment VALUES(3,1,"alex","bueda bom mesmo, mesmo, mesmooo");
-
-INSERT INTO FavouriteRestaurant VALUES(1, "alex");
+INSERT INTO User VALUES('alex', 'b2e98ad6f6eb8508dd6a14cfa704bad7f05f6fb1', 'email@gmail.com', 'rua sesamo', 91239192);
+INSERT INTO Customer VALUES ('alex');
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;
