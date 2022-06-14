@@ -1,5 +1,9 @@
 <?php
-function output_restaurant_dish($dish){;?>
+include_once ('database/image.class.php');
+function output_restaurant_dish($dish){
+    $imagePath = Image::getImage(getDatabaseConnection(),$dish->imageID);
+    $imagePath = $imagePath->getPath();
+    ?>
         <article>
                 <section>
                     <?php echo "<h4>" . $dish->name . "</h4>";
@@ -12,7 +16,7 @@ function output_restaurant_dish($dish){;?>
                     <!-- TODO: Dish Discount appear here -->
                 </section>
                 <section>
-                    <img src="https://picsum.photos/200/160" alt="logopic">
+                    <img src="<?php echo $imagePath ?>" alt="logopic">
                 </section>
                 <section>
                     <button type="button">-</button>
