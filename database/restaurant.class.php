@@ -18,7 +18,7 @@
       $this->address = $address;
     }
 
-    static function registerRestaurant(PDO $db, Restaurant $restaurant) {
+    static function registerRestaurant(PDO $db, Restaurant $restaurant, string $username) {
         $tempname = $_FILES['restaurantImage']['tmp_name'];
         $folder =  "img/restaurants/".$restaurant->getName();
         mkdir($folder);
@@ -44,7 +44,7 @@
         $restaurantOwnerStatement = $db->prepare('INSERT INTO RestaurantOwner VALUES(?,?)');
         $restaurantOwnerStatement->execute(
             array(
-                $_SESSION['username'],
+                $username,
                 $restaurant->getRestaurantID($db,$restaurant->getName(),$restaurant->getCategory(),$restaurant->getAddress())
             )
         );
@@ -88,11 +88,9 @@
   }
 
   static function getRestaurantsFromRestaurantOwner(PDO $db, string $restaurantOwner) {
-      $stmt = $db->prepare('SELECT * FROM Restaurant 
-                                    WHERE restaurantID 
-                                    IN (SELECT restaurantID 
-                                        FROM RestaurantOwner
-                                        WHERE username = ?)');
+      $stmt = $db->prepare('SELECT Restaurant.restaurantID, Restaurant.imageID, Restaurant.name, Restaurant.category, Restaurant.address
+       FROM Restaurant, RestaurantOwner
+       WHERE Restaurant.restaurantID = RestaurantOwner.restaurantID and RestaurantOwner.username = ?');
       $stmt->execute([$restaurantOwner]);
       $restaurants = array();
       while($restaurant = $stmt->fetch()){

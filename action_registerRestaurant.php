@@ -1,6 +1,6 @@
 <?php
     declare(strict_types=1);
-
+    session_start();
     include_once('database/connection.db.php');
     include_once('database/restaurantOwner.class.php');
     include_once('database/restaurant.class.php');
@@ -14,7 +14,7 @@
 
     $restaurant = new Restaurant($_POST['restaurantName'], $_POST['restaurantCategory'], $_POST['restaurantAddress']);
 
-    $created = Restaurant::registerRestaurant($db, $restaurant);
+    $created = Restaurant::registerRestaurant($db, $restaurant, $_SESSION['username']);
 
     if (!$created) {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
