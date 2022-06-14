@@ -76,9 +76,15 @@ CREATE TABLE Review
     username     NVARCHAR(120) CONSTRAINT fk_review_username REFERENCES User (username) ,
     imageID      integer CONSTRAINT fk_review_image REFERENCES Image (imageID) ,
     title        NVARCHAR(60) NOT NULL ,
-    message      NVARCHAR(500) NOT NULL ,
     datetime     date NOT NULL ,
     score        real NOT NULL CONSTRAINT valid_score CHECK (score <= 5 AND score >=0)
+);
+
+CREATE TABLE Comment(
+    commentID   integer PRIMARY KEY AUTOINCREMENT,
+    reviewID    integer CONSTRAINT fk_comment_review REFERENCES Review(reviewID),
+    username    NVARCHAR(120) CONSTRAINT fk_comment_username REFERENCES User (username),
+    message     NVARCHAR(500) NOT NULL
 );
 
 CREATE TABLE Image
@@ -149,7 +155,14 @@ INSERT INTO User VALUES("tiago", "9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684", "ti
 
 INSERT INTO FavouriteRestaurant VALUES(1, "tiago");
 
+INSERT INTO Review VALUES(1, 1, "alex", 1, "Comida bue boa", "2022-06-10", "4");
+INSERT INTO Review VALUES(2, 3, "alex", 1, "Comida top xuxa", "2022-06-13", "5");
 
+INSERT INTO Comment VALUES(1,2,"alex","otimo bueda bom mesmo");
+INSERT INTO Comment VALUES(2,2,"alex","carninha muito top");
+INSERT INTO Comment VALUES(3,1,"alex","bueda bom mesmo, mesmo, mesmooo");
+
+INSERT INTO FavouriteRestaurant VALUES(1, "alex");
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;

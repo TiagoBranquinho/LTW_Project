@@ -1,0 +1,134 @@
+.reviewsCategory{
+    display: flex;
+    justify-content: space-between;
+    margin: 3em 0em 3em 0;
+}
+
+.reviewsCategory h4{
+    margin: 0 1em 0 0;
+    
+}
+
+.reviewsCategory h1{
+    flex-grow: 1;
+}
+
+.reviewsCategory *{
+    align-self: center;
+}
+
+.reviewsCategory a{
+    background-color: #bf3100;
+    border: solid;
+    color: white;
+    padding: 12px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: larger;
+    cursor: pointer;
+    margin: 0;
+    border-radius: 25px;
+    height: fit-content;
+    width: fit-content;
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+
+ul{
+    list-style-type: none;
+    padding: 0rem;
+    margin-top: 0rem;
+    margin-bottom: 0em;
+}
+
+#reviews li{
+    text-align: left;
+    padding: 1.5em;
+    border: 2px;
+    border-style: solid;
+    border-color: #bf3100;
+    border-radius: 25px;
+    margin-bottom: 2em;
+}
+
+.review{
+    display: grid;
+    grid-template-rows: 1fr;
+    justify-items: start;
+}
+
+.review #name h3,h4,h5{
+    margin: 0;
+}
+
+li #name{
+    display: flex;
+    justify-content: space-between;
+}
+
+.review #images{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin: 0 5em 0 5em;
+}
+
+.review #images *{
+    margin-right: 1em;
+}
+
+.review #images {
+    margin: 1px;
+}
+
+.review #buttons a{
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+
+.review #buttons{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content:space-around;
+    grid-column-start: 3;
+    grid-column-end: 3;
+    height: auto;
+}
+
+.review #buttons a{
+    width: auto;
+}
+
+.review #commentSection{
+    display: inline-block;
+    padding-top: 2em;
+}
+
+.review #inputComment{
+    max-width: max-content;
+}
+
+.review #comment{
+    display: inline-flex;
+    align-items: flex-end;
+}
+
+.review #user{
+    font-family: sans-serif;
+    font-size: larger;
+    padding-right: 0.5em;
+    text-shadow: 0 0 black;
+}
+
+.review #message{
+    font-family: sans-serif;
+}
+
+#name > h3:nth-child(3) > span{
+    padding-left: 0.4em;
+}

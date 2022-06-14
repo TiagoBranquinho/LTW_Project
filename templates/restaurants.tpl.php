@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     include_once('database/connection.db.php');
     include_once('database/restaurant.class.php');
 
@@ -52,8 +53,8 @@
                     <img src="https://picsum.photos/120/100" alt="logopic">
                 </section>
                 <section id="buttons">
-                    <?php echo "<a href='restaurant.php?id=".$restaurant->restaurantID."&filter=All'>Menu</a>";;?>
-                    <a>Reviews</a>  <!-- NOT DONE YET -->
+                    <?php echo "<a href='restaurant.php?id=".$restaurant->restaurantID."&filter=All'>Menu</a>";?>
+                    <?php echo "<a href='reviews.php?restID=".$restaurant->restaurantID."'>Reviews</a>";?>
                 </section>
             </article>
         </li>
