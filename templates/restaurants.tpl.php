@@ -22,11 +22,22 @@
                         };?>
                         
                     </select>
+                    <h4>Only Favorite Restaurants</h4>
+            <label class="switch">
+            <?php if($_GET['fav'] ===  "on"){
+                    echo "<input type='checkbox' checked>";
+                 }
+                  else{
+                    echo "<input type='checkbox'>";
+                  };?>
+            <span class="slider round"></span>
+            </label>
+            <?php echo "<input type='hidden' name='fav' value='" . $_GET['fav'] . "'>";?>
                     <button type="submit">Filter</button>
                 </form>
             </div>
             <ul id="restaurants">
-            <?php $restaurantList = Restaurant::getRestaurants(getDatabaseConnection());
+            <?php $restaurantList = Restaurant::getRestaurants(getDatabaseConnection(), $_SESSION['username'], $_GET['fav']);
             Restaurant::filterRestaurants($restaurantList, $filter);
 
             foreach($restaurantList as $restaurantItem){

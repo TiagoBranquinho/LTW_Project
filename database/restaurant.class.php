@@ -35,9 +35,19 @@
         }
     }
 
-    static function getRestaurants(PDO $db) {
-        $stmt = $db->prepare('SELECT * FROM Restaurant');
+    static function getRestaurants(PDO $db, string $username, string $fav) {
+      if($fav === "off"){
+        $querry = 'SELECT * FROM Restaurant';
+        $stmt = $db->prepare($querry);
         $stmt->execute();
+      }
+      else{
+        $querry = 'SELECT Restaurant.restaurantID, Restaurant.imageID, Restaurant.name, Restaurant.category, Restaurant.address
+                  FROM Restaurant, FavouriteRestaurant
+                  WHERE Restaurant.restaurantID = FavouriteRestaurant.restaurantID and username = ?';
+        $stmt = $db->prepare($querry);
+        $stmt->execute(array($username));
+        }
 
         $restaurants = array();
         while($restaurant = $stmt->fetch()){

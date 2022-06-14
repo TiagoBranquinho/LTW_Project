@@ -131,6 +131,9 @@ main > .login label {
     font-family: 'Fira Sans Condensed', sans-serif;
 }
 
+.dropdown-content * {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
 
 
 main > .login label:nth-child(1) input{
@@ -225,8 +228,16 @@ h5 a{
     margin: 3em 8em 3em 0;
 }
 
+.restaurantCategory > form{
+    display: flex;
+}
+
+.restaurantCategory button{
+    margin-left: 1em;
+}
+
 .restaurantCategory h4{
-    margin: 0 1em 0 0;
+    margin: 0 1em 0 1em;
     
 }
 
