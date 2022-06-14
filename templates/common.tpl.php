@@ -25,7 +25,7 @@ if(!isset($_SESSION)) { session_start(); }
                 <script src="../scripts/checkFavouriteRestaurantFilter.js" defer></script>
                 <script src="../scripts/indexScript.js" defer></script>
                 <script src="../scripts/checkFavouriteRestaurantOrderFilter.js" defer></script>
-
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
             </head>
             <body>

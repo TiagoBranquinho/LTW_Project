@@ -55,7 +55,7 @@
         <li>
             <article class="restaurant">
                 <section id="name">
-                    <?php echo "<h3>" . $restaurant->name . "</h3>";
+                    <?php echo "<h3>".floatval(Restaurant::getRating(getDatabaseConnection(),$restaurant->restaurantID))."<span class='fa fa-star checked'></span>" . " " . $restaurant->name . " </h3>";
                     echo "<h4>Category: " . $restaurant->category . "</h4>";
                     echo "<h5>Morada: " . $restaurant->address . "</h5>";?>
                 </section>

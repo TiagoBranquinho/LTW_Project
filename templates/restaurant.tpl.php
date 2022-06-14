@@ -6,6 +6,7 @@
     include_once('templates/dish.tpl.php');
     function output_restaurant_info(int $id) {
         $restaurant = Restaurant::getRestaurant(getDatabaseConnection(), $id);
+        $rating = Restaurant::getRating(getDatabaseConnection(), $id);
         $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$_SESSION['username']);
         $imagePath = Image::getImage(getDatabaseConnection(),$restaurant->imageID)->getPath()?>
         <main>
@@ -13,8 +14,8 @@
             <div class="restaurantHeader">
                 <div>
                     <?php echo "<h4>Category: " . $restaurant->category . "</h4>";
-                    echo "<h4>" . $restaurant->address . "</h4>";?>
-                    <h3>Rating: 4.2</h3>  <!-- NOT WORKING -->
+                    echo "<h4>" . $restaurant->address . "</h4>";
+                    echo "<h3> Rating: " . $rating . "<span class='fa fa-star checked'></span></h3>";?>
                 </div>
                 <img src="<?php echo $imagePath?>" alt="logopic" width="400" height="300">
                 <?php if($isOwner) { ?>

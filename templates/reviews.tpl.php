@@ -8,8 +8,6 @@
     
     function output_restaurant_reviews(int $restaurantID){;?>
         <main>
-            <!-- Add icon library -->
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <div class="reviewsCategory">
                 <h1>Reviews</h1>
                 <?php if (isset($_SESSION['username']) && Restaurant::isRestaurantUsedBy(getDatabaseConnection(), $_SESSION['username'], $restaurantID)){ ?>

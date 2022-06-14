@@ -138,6 +138,16 @@
     return false;
   }
 
+  static function getRating(PDO $db, int $restaurantID) {
+    $stmt = $db->prepare('SELECT round(avg(average),1) AS rating 
+                          FROM (SELECT username, avg(score) AS average 
+                                FROM review 
+                                WHERE restaurantID=? 
+                                GROUP BY username)');
+    $stmt->execute(array($restaurantID));
+    return  $stmt->fetch()['rating'];
+  }
+
   static function getCategories(PDO $db) {
     $stmt = $db->prepare('SELECT kind FROM Category ORDER BY kind ASC');
     $stmt->execute();
