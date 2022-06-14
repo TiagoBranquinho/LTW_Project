@@ -3,6 +3,7 @@ include_once('templates/common.tpl.php');
 include_once ('database/dish.class.php');
 include_once ('database/utils.php');
 $dishCategories = Dish::getCategories(getDatabaseConnection());
+array_shift($dishCategories);
 output_header();
 ?>
 <main>
