@@ -19,6 +19,7 @@
     <?php };
 
     function output_restaurant_dishes(int $id, string $filter){
+        $_SESSION['restaurantIdDishes'] = $id;
         $dishes= Dish::getRestaurantDishes(getDatabaseConnection(), $id);?>
         <div class="restaurantFilter">
             <h4>Filter by Category:</h4>
@@ -34,7 +35,7 @@
                         }
                     };?>
                 </select>
-                <?php echo "<input type='hidden' name='id' value='". $id . "'>";?>
+                <?php echo "<input type='hidden' name='id' value='". $_SESSION['restaurantIdDishes'] . "'>";?>
                 <button type='submit'>Filter</button>
             </form>
         </div>
