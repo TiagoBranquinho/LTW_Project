@@ -26,6 +26,9 @@
                     <a href="add_dish.php?id=<?php echo $id?>">
                         <button>Add dish</button>
                     </a>
+                    <a href="check_orders.php?id=<?php echo $id?>">
+                        <button>Check Orders</button>
+                    </a>
                 <?php } ?>
             </div>
     <?php };

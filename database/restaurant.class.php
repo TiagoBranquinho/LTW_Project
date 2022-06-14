@@ -107,6 +107,26 @@
       return $restaurants;
   }
 
+  static function getRestaurantOrders(PDO $db, int $id) {
+    $stmt = $db->prepare('SELECT Orders.orderID, Orders.state, Orders.restaurantID, Orders.dishID, Orders.quantity, Orders.username
+     FROM Orders
+     INNER JOIN Restaurant ON Orders.restaurantID=Restaurant.restaurantID
+     WHERE Orders.restaurantID = ?');
+    $stmt->execute([$id]);
+    $orders = array();
+    while($order = $stmt->fetch()){
+      array_push($orders, new Order(
+            $order['orderID'],
+            $order['state'],
+            $order['restaurantID'], 
+            $order['dishID'],
+            $order['quantity'],
+            $order['username']
+        ));
+    }
+    return $orders;
+}
+
   static function getRestaurant(PDO $db, int $id) {
     $stmt = $db->prepare('SELECT * FROM Restaurant WHERE restaurantID = ?');
     $stmt->execute(array($id));

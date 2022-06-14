@@ -146,6 +146,11 @@ static function getNumDishes(PDO $db, int $id) {
   
 }
 
+static function updateOrder(PDO $db, int $id, string $state) {
+  $stmt = $db->prepare('UPDATE Orders SET state=? WHERE orderID=?');
+  $stmt->execute(array($state, $id));
+}
+
 
 static function registerOrder(PDO $db, Order $order) {;
   $stmt = $db->prepare('INSERT INTO Orders VALUES(?,?,?,?,?,?)');
