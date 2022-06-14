@@ -62,6 +62,9 @@
                     </div>
                     <?php echo "<h3>State: " . $order->state . "</h3>";?>
                 </section>
+                <section>
+                    <?php echo "<a href=order.php?orderID=" . $order->orderID . ">Details</a>";?>
+                </section>
             </article>
         </li>
  <?php };?>

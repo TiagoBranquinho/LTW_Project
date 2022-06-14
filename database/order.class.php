@@ -74,18 +74,52 @@ static function getOrdersStates(PDO $db) {
   return $states;
 }
 
-static function getOrder(PDO $db, int $id) {
+static function getOrders(PDO $db, int $id) {
   $stmt = $db->prepare('SELECT * FROM Orders WHERE orderID = ?');
   $stmt->execute(array($id));
 
-  $order = $stmt->fetch();
-  return new Order(
-  $order['orderID'],
-  $order['state'],
-  $order['restaurantID'],
-  $order['dishID'],
-  $order['quantity'],
-  $order['username']);
+  $orders = array();
+  while($order = $stmt->fetch()){
+    array_push($orders, new Order(
+      $order['orderID'],
+      $order['state'],
+      $order['restaurantID'],
+      $order['dishID'],
+      $order['quantity'],
+      $order['username']));
+  }
+  return $orders;
+}
+
+static function getOrderDishQuantity(PDO $db, int $orderID, int $dishID) {
+  $stmt = $db->prepare('SELECT Orders.quantity as quant 
+  FROM Orders, Dish 
+  WHERE Orders.orderID = ? and Orders.dishID = Dish.dishID and Orders.dishID = ?');
+  $stmt->execute(array($orderID, $dishID));
+
+  $quantity = $stmt->fetch();
+  return $quantity['quant'];
+}
+
+static function getOrderDishes(PDO $db, int $id, string $username) {
+  $stmt = $db->prepare('SELECT Dish.dishID, Dish.name, Dish.imageID, Dish.restaurantID, Dish.price, Dish.category, Dish.discount
+  FROM Dish, Orders
+  WHERE Orders.orderID = ? and Orders.dishID = Dish.dishID and Orders.username = ?');
+  $stmt->execute(array($id, $username));
+
+  $dishes = array();
+  while($dish = $stmt->fetch()){
+    $thisDish = new Dish(
+      $dish['name'],
+      $dish['restaurantID'],
+      $dish['price'],
+      $dish['category'],
+      $dish['discount']);
+      $thisDish->dishID = $dish['dishID'];
+      $thisDish->imageID = $dish['imageID'];
+      array_push($dishes, $thisDish);
+  }
+  return $dishes;
 }
 
 static function getOrderPrice(PDO $db, int $id) {
