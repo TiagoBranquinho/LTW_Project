@@ -4,6 +4,7 @@
     include_once('database/connection.db.php');
     include_once('database/review.class.php');
     include_once('database/comment.class.php');
+    include_once('database/restaurant.class.php');
     
     function output_restaurant_reviews(int $restaurantID){;?>
         <main>
@@ -11,7 +12,11 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <div class="reviewsCategory">
                 <h1>Reviews</h1>
-                <a id="buttons" href="action_add_review.php">New Review</a>
+                <?php if (isset($_SESSION['username']) && Restaurant::isRestaurantUsedBy(getDatabaseConnection(), $_SESSION['username'], $restaurantID)){ ?>
+                    <section class="buttons">
+                        <?php echo "<a id='addReview' href='new_review.php?restID=" . $restaurantID . "'>New Review</a>"; ?>
+                    </section>
+                <?php } ?>
             </div>
                 <ul id="reviews">
                     <?php
@@ -48,7 +53,7 @@
 
                 if (isset($_SESSION['username'])){?>
                     <form id="commentSection" action="action_add_comment.php" method="POST">
-                        <input id="inputComment" type="text" name="comment" id="comment" placeholder="Enter your comment">
+                        <input id="inputComment" type="text" name="comment" id="comment" placeholder="Enter your comment" required="true">
                         <button type="submit" value="Submit"> Comment </button>
                     </form>
                 <?php

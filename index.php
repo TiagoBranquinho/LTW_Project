@@ -1,6 +1,8 @@
 <?php
     session_start();
     include_once('templates/common.tpl.php');
+    include_once('database/connection.db.php');
+    include_once('database/restaurant.class.php');
     include_once('database/image.class.php');
     output_header();
 ?>
@@ -11,15 +13,18 @@
         </div>
         <div id="search">
             <h1>Welcome!</h1>
-            <form>
-                <input type="text" name="restaurant" placeholder=" Search Restaurants here..." required="false" size="35" list="restaurants">
-                <datalist id="restaurants">
-                    <!--Use AJAX-->
-                    <option>Tasca</option>
-                    <option>KFC</option>
-                    <option>Sabor Gaúcho</option>
-                </datalist>
-            </form>
+            <h2>Search Restaurants Here</h2>
+            <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">&#8595</button>
+  <div id="myDropdown" class="dropdown-content">
+    <?php $restaurants = Restaurant::getRestaurants(getDatabaseConnection());
+    foreach($restaurants as $restaurant){?>
+        <div id="restaurantIndex">
+        <?php echo "<a href='restaurant.php?filter=All&id=" . $restaurant->restaurantID . "'>" . $restaurant->name . " - " . $restaurant->category . "</a>";?>
+        </div>
+    <?php }?>
+  </div>
+</div>
         </div>
     </div>
 </main>

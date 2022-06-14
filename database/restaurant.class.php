@@ -58,9 +58,19 @@
         $stmt->execute([$restaurant->name, $restaurant->category, $restaurant->address, $imageID, $restaurant->restaurantID]);
     }
 
-    static function getRestaurants(PDO $db) {
-        $stmt = $db->prepare('SELECT * FROM Restaurant');
+    static function getRestaurants(PDO $db, string $username, string $fav) {
+      if($fav === "off"){
+        $querry = 'SELECT * FROM Restaurant';
+        $stmt = $db->prepare($querry);
         $stmt->execute();
+      }
+      else{
+        $querry = 'SELECT Restaurant.restaurantID, Restaurant.imageID, Restaurant.name, Restaurant.category, Restaurant.address
+                  FROM Restaurant, FavouriteRestaurant
+                  WHERE Restaurant.restaurantID = FavouriteRestaurant.restaurantID and username = ?';
+        $stmt = $db->prepare($querry);
+        $stmt->execute(array($username));
+        }
 
         $restaurants = array();
         while($restaurant = $stmt->fetch()){
@@ -112,6 +122,21 @@
     $thisRestaurant->imageID = $restaurant['imageID'];
     return $thisRestaurant;
 }
+
+  static function isRestaurantUsedBy(PDO $db, string $username, int $restaurantID) {
+    
+    $stmt = $db->prepare('SELECT DISTINCT Restaurant.restaurantID
+                          FROM Restaurant
+                          INNER JOIN Orders ON Orders.restaurantID=Restaurant.restaurantID
+                          WHERE Orders.username = ?');
+    $stmt->execute(array($username));
+    while($rest = $stmt->fetch()){
+      if ($rest['restaurantID'] === $restaurantID){
+        return true;
+      }
+    }
+    return false;
+  }
 
   static function getCategories(PDO $db) {
     $stmt = $db->prepare('SELECT kind FROM Category ORDER BY kind ASC');

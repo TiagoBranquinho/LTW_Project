@@ -13,6 +13,7 @@ if(!isset($_SESSION)) { session_start(); }
                 <link href="../css/restaurant.css" rel="stylesheet">
                 <link href="../css/responsive.css" rel="stylesheet">
                 <link href="../css/order.css" rel="stylesheet">
+                <link href="../css/index.css" rel="stylesheet">
                 <link href="../css/reviews.css" rel="stylesheet">
                 <link rel="icon" type="image/x-icon" href="../img/assets/favicon.ico">
                 <script src="../scripts/script.js" defer></script>
@@ -22,6 +23,9 @@ if(!isset($_SESSION)) { session_start(); }
                 <script src="../scripts/updateOrderForm.js" defer></script>
                 <script src="../scripts/updateOrderQuantity.js" defer></script>
                 <script src="../scripts/checkFavouriteRestaurantFilter.js" defer></script>
+                <script src="../scripts/indexScript.js" defer></script>
+                <script src="../scripts/checkFavouriteRestaurantOrderFilter.js" defer></script>
+
 
             </head>
             <body>
