@@ -7,7 +7,8 @@
     function output_restaurant_info(int $id) {
         $restaurant = Restaurant::getRestaurant(getDatabaseConnection(), $id);
         $rating = floatval(Restaurant::getRating(getDatabaseConnection(),$restaurant->restaurantID));
-        $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$_SESSION['username']);
+        if(isset($_SESSION['username']))
+            $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$_SESSION['username']);
         $imagePath = Image::getImage(getDatabaseConnection(),$restaurant->imageID)->getPath()?>
         <main>
             <?php echo "<h1>" . $restaurant->name . "</h1>";?>
@@ -31,7 +32,11 @@
 
     function output_restaurant_dishes(int $id, string $filter){
         $dishes = Dish::getRestaurantDishes(getDatabaseConnection(), $id);
-        $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$_SESSION['username'])?>
+        if(!isset($_SESSION['username']))
+            $username = "";
+        else
+            $username = $_SESSION['username'];
+        $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$username)?>
         <div class="restaurantFilter">
             <h4>Filter by Category:</h4>
             <form action="action_restaurant_dishes_category.php" method="POST">

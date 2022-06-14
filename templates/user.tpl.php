@@ -12,11 +12,7 @@
         <?php echo '<h4>Address: ' . $user->address . '</h4>';?>
         <a href="edit_user.php">Edit</a>
         <a href="change_password.php">Change Password</a>
+        <a href="my_orders.php?filter=All&fav=off">My orders</a>
     </div>
-<?php }
-
-function output_user_nav(){;?>
-    <a href="my_orders.php?filter=All&fav=off">MY ORDERS</a>
-    <a href="order.php">ORDER PAGE</a>
     </main>
-<?php };?>
+<?php }

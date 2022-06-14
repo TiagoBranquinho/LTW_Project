@@ -13,7 +13,8 @@
         </div>
         <div id="search">
             <h1>Welcome!</h1>
-            <h2>Search Restaurants Here</h2>
+            <?php if(isset($_SESSION['customer']) || !isset($_SESSION['username'])){?>
+                <h2>Search Restaurants Here</h2>
             <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn">&#8595</button>
   <div id="myDropdown" class="dropdown-content">
@@ -25,6 +26,7 @@
     <?php }?>
   </div>
 </div>
+            <?php }?>
         </div>
     </div>
 </main>
