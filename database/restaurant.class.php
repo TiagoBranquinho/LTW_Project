@@ -19,7 +19,6 @@
     }
 
     static function registerRestaurant(PDO $db, Restaurant $restaurant) {
-        $filename = $_FILES['restaurantImage']['name'];
         $tempname = $_FILES['restaurantImage']['tmp_name'];
         $folder =  "img/restaurants/".$restaurant->getName();
         mkdir($folder);
@@ -54,15 +53,9 @@
       }
 
 
-    static function editRestaurant(PDO $db, Restaurant $restaurant, string $oldRestaurantName, int $imageID) {
-        if($imageID == -1) {
-            $stmt = $db->prepare("UPDATE Restaurant SET name = ?, category = ? , address = ? WHERE restaurant.restaurantID = ?");
-            $stmt->execute([$restaurant->name, $restaurant->category, $restaurant->address, $restaurant->restaurantID]);
-        } else {
-            $stmt = $db->prepare("UPDATE Restaurant SET name = ?, category = ? , address = ?, imageID = ? WHERE restaurant.restaurantID = ?");
-            $stmt->execute([$restaurant->name, $restaurant->category, $restaurant->address, $imageID, $restaurant->restaurantID]);
-        }
-        rename("img/restaurants/".$oldRestaurantName, "img/restaurants/".$restaurant->getName());
+    static function editRestaurant(PDO $db, Restaurant $restaurant, int $imageID) {
+        $stmt = $db->prepare("UPDATE Restaurant SET name = ?, category = ? , address = ?, imageID = ? WHERE restaurant.restaurantID = ?");
+        $stmt->execute([$restaurant->name, $restaurant->category, $restaurant->address, $imageID, $restaurant->restaurantID]);
     }
 
     static function getRestaurants(PDO $db) {

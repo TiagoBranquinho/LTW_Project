@@ -2,11 +2,12 @@
     include_once('database/connection.db.php');
     include_once('database/restaurant.class.php');
     include_once('database/dish.class.php');
+    include_once ('database/image.class.php');
     include_once('templates/dish.tpl.php');
-
     function output_restaurant_info(int $id) {
         $restaurant = Restaurant::getRestaurant(getDatabaseConnection(), $id);
-        $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$_SESSION['username']);?>
+        $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$_SESSION['username']);
+        $imagePath = Image::getImage(getDatabaseConnection(),$restaurant->imageID)->getPath()?>
         <main>
             <?php echo "<h1>" . $restaurant->name . "</h1>";?>
             <div class="restaurantHeader">
@@ -15,13 +16,12 @@
                     echo "<h4>" . $restaurant->address . "</h4>";?>
                     <h3>Rating: 4.2</h3>  <!-- NOT WORKING -->
                 </div>
-                <img src="https://picsum.photos/400/300" alt="logopic">
+                <img src="<?php echo $imagePath?>" alt="logopic" width="400" height="300">
                 <?php if($isOwner) { ?>
-                    <a href="edit_restaurant.php?id=<?php echo $restaurant->getRestaurantID(getDatabaseConnection(),
-                        $restaurant->getName(),$restaurant->getCategory(), $restaurant->getAddress())?>">
+                    <a href="edit_restaurant.php?id=<?php echo $id?>">
                         <button>Edit</button>
                     </a>
-                    <a href="add_dish.php">
+                    <a href="add_dish.php?id=<?php echo $id?>">
                         <button>Add dish</button>
                     </a>
                 <?php } ?>
@@ -29,7 +29,7 @@
     <?php };
 
     function output_restaurant_dishes(int $id, string $filter){
-        $dishes= Dish::getRestaurantDishes(getDatabaseConnection(), $id);?>
+        $dishes = Dish::getRestaurantDishes(getDatabaseConnection(), $id);
         $isOwner = RestaurantOwner::isUserOwner(getDatabaseConnection(),$id,$_SESSION['username'])?>
         <div class="restaurantFilter">
             <h4>Filter by Category:</h4>

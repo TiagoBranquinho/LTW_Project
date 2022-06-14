@@ -6,8 +6,10 @@ function output_restaurant_dish($dish){;?>
                     echo "<h4>Category: " . $dish->category . "</h4>";?>
                     <div class="price">
                         <h4>Price: </h4>
-                        <?php echo "<h4 class='value'>" . $dish->price . "</h4>";?>
+                        <?php echo "<h4 class='value'>" . ($dish->price - $dish->price*($dish->discount)) . "</h4>";?>
+                        <!-- TODO: Calculate dish price with discount-->
                     </div>
+                    <!-- TODO: Dish Discount appear here -->
                 </section>
                 <section>
                     <img src="https://picsum.photos/200/160" alt="logopic">

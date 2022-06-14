@@ -20,7 +20,27 @@
       $this->discount = $discount;
     }
 
+    static function addDishToRestaurant(PDO $db, Dish $dish): bool {
+        $tempname = $_FILES['dishImage']['tmp_name'];
+        $stmt = $db->prepare('SELECT name FROM Restaurant WHERE restaurantID = ?');
+        $stmt->execute([$dish->restaurantID]);
+        $restaurant = $stmt->fetch();
+        $folder =  "img/restaurants/".$restaurant['name'];
+        $imagePath = $folder."/".$dish->name.".png";
 
+        if(move_uploaded_file($tempname,$imagePath)) {
+            ?> <script> alert('File uploaded!') </script> <?php
+            $insertFilenameStmt = $db->prepare('INSERT INTO Image(path) VALUES(?)');
+            $insertFilenameStmt->execute(array($imagePath));
+            $dish->imageID = Image::getLastestImageID($db);
+            $stmt = $db->prepare('INSERT INTO Dish(name,imageID,restaurantID,price,category,discount) VALUES(?,?,?,?,?,?)');
+            $stmt->execute([$dish->name,$dish->imageID,$dish->restaurantID,$dish->price,$dish->category,$dish->discount]);
+            return true;
+        } else {
+            ?> <script> alert('File upload fail!') </script> <?php
+            return false;
+        }
+    }
 
 static function getDish(PDO $db, int $id) {
     $stmt = $db->prepare('SELECT * FROM Dish WHERE dishID = ?');

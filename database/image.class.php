@@ -62,13 +62,11 @@
           return $imageObject;
       }
 
-      static function replaceObjectImage(PDO $db, string $inputName, int $imageID, string $newRestaurantName) {
+      static function replaceObjectImage(string $inputName, string $newRestaurantName) {
           $tempname = $_FILES[$inputName]['tmp_name'];
-          $folder =  "img/restaurants/".$newRestaurantName."/".$newRestaurantName.".png";
-          if(move_uploaded_file($tempname,$folder)) {
+          $folderPath = "img/restaurants/".$newRestaurantName."/".$newRestaurantName.".png";
+          if(move_uploaded_file($tempname,$folderPath)) {
               ?> <script> alert('File uploaded!') </script> <?php
-              $insertFilenameStmt = $db->prepare('UPDATE Image SET path = ? WHERE imageID = ?');
-              $insertFilenameStmt->execute(array($folder, $imageID));
           } else {
               ?> <script> alert('File upload fail!') </script> <?php
           }
