@@ -21,6 +21,23 @@
     }
 
 
+
+static function getDish(PDO $db, int $id) {
+    $stmt = $db->prepare('SELECT * FROM Dish WHERE dishID = ?');
+    $stmt->execute(array($id));
+
+    $dish = $stmt->fetch();
+    $thisDish = new Dish(
+    $dish['name'],
+    $dish['restaurantID'],
+    $dish['price'],
+    $dish['category'],
+    $dish['discount']);
+
+    $thisDish->dishID = $dish['dishID'];
+    $thisDish->imageID = $dish['imageID'];
+    return $thisDish;
+}
 static function getRestaurantDishes(PDO $db, int $id) {
     $stmt = $db->prepare('SELECT * FROM Dish WHERE restaurantID = ?');
     $stmt->execute(array($id));

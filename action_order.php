@@ -9,11 +9,13 @@
     $counter = $_POST['resquestsNr'];
     $start = 1;
     $valid = 0;
+    $id = getCurrID(getDatabaseConnection(), "orderID", "Orders");
+
     while($counter > 0){
         if(isset($_POST['element' . $start]) ){
             if($_POST['quantity' . $start] > 0){
                 $valid = 1;
-                $order = new Order(0,"Received", $_POST['restaurantID'], $_POST['element' . $start], $_POST['quantity' . $start], $_SESSION['username']);
+                $order = new Order($id,"Received", $_POST['restaurantID'], $_POST['element' . $start], $_POST['quantity' . $start], $_SESSION['username']);
                 Order::registerOrder(getDatabaseConnection(), $order);
             }
             $counter--;
@@ -23,7 +25,7 @@
     if(!$valid)
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     else
-        header('Location: my_orders.php?filter=All');
+        header('Location: my_orders.php?filter=All&fav=off');
     }
     ?>
 

@@ -2,6 +2,8 @@
     declare (strict_types = 1);
     include_once('database/connection.db.php');
     include_once('database/order.class.php');
+    include_once('database/restaurant.class.php');
+    include_once('database/dish.class.php');
     function output_my_orders_list(string $username){;?>
     <main>
     <div class="orderFilter">
@@ -34,5 +36,32 @@
         </form>
         <?php $orderList = Order::getUserOrders(getDatabaseConnection(), $username, $_GET['fav']);
         Order::filterOrders($orderList, $_GET['filter']);?>
-    </div>
-    <?php };?>
+        </div>
+        <ul id="orders">
+        <?php foreach($orderList as $order){
+            ouput_my_order($order);
+        }?>
+        </ul>
+    </main>
+    <?php }
+    
+    function ouput_my_order(Order $order){;?>
+        <li>
+            <article class="order">
+                <section>
+                    <?php echo "<h2>" . Restaurant::getRestaurant(getDatabaseConnection(), $order->restaurantID)->name ."</h2>"?>
+                </section>
+                <section>
+                    <div>
+                        <?php echo "<h4>Order number #". $order->orderID . "</h4>";
+                        echo "<h4>Dishes Ordered: " . Order::getNumDishes(getDatabaseConnection(), $order->orderID) . "</h4>";?>
+                        <div class="price">
+                        <h4>Price: </h4>
+                        <?php echo "<h4 class='value'>" . Order::getOrderPrice(getDatabaseConnection(), $order->orderID) . "</h4>";?>
+                    </div>
+                    </div>
+                    <?php echo "<h3>State: " . $order->state . "</h3>";?>
+                </section>
+            </article>
+        </li>
+ <?php };?>

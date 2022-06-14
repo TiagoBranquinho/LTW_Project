@@ -59,10 +59,13 @@
     $stmt->execute(array($id));
 
     $restaurant = $stmt->fetch();
-    return new Restaurant(
+    $thisRestaurant = new Restaurant(
     $restaurant['name'],
     $restaurant['category'],
     $restaurant['address']);
+    $thisRestaurant->restaurantID = $restaurant['restaurantID'];
+    $thisRestaurant->imageID = $restaurant['imageID'];
+    return $thisRestaurant;
 }
 
   static function getCategories(PDO $db) {

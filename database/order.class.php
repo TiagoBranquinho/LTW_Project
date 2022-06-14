@@ -13,17 +13,13 @@
 
     public function __construct(int $orderID, string $state, int $restaurantID, int $dishID, int $quantity, string $username)
     {
-      if($orderID === 0)
-        $this->orderID = getCurrID(getDatabaseConnection(), "orderID", "Orders");
-      else
-        $this->orderID = $orderID;
+      $this->orderID = $orderID;
       $this->state = $state;
       $this->restaurantID = $restaurantID;
       $this->dishID = $dishID;
       $this->quantity = $quantity;
       $this->username = $username;
     }
-
   
 static function filterOrders(array &$orderList, string $filter) {
   $newArr = array();
@@ -37,10 +33,11 @@ static function filterOrders(array &$orderList, string $filter) {
 }
 static function getUserOrders(PDO $db, string $username, string $favourite) {
 
-  if($favourite === "false"){
-    $querry = 'SELECT *
+  if($favourite === "off"){
+    $querry = 'SELECT orderID, state, restaurantID, min(dishID) as min_dish, quantity, username
     FROM Orders
-    WHERE Orders.username = ?';
+    WHERE Orders.username = ?
+    group by orderID';
   }
   else{
     $querry = 'SELECT *
@@ -57,7 +54,7 @@ static function getUserOrders(PDO $db, string $username, string $favourite) {
           $order['orderID'],
           $order['state'],
           $order['restaurantID'],
-          $order['dishID'],
+          $order['min_dish'],
           $order['quantity'],
           $order['username']
       );
@@ -77,24 +74,44 @@ static function getOrdersStates(PDO $db) {
   return $states;
 }
 
-static function getOrder(PDO $db) {
-  $stmt = $db->prepare('SELECT * FROM Restaurant');
-  $stmt->execute();
+static function getOrder(PDO $db, int $id) {
+  $stmt = $db->prepare('SELECT * FROM Orders WHERE orderID = ?');
+  $stmt->execute(array($id));
 
-  $restaurants = array();
-  while($restaurant = $stmt->fetch()){
-      $thisRestaurant = new Restaurant(
-          $restaurant['name'],
-          $restaurant['category'],
-          $restaurant['address']
-      );
-
-      $thisRestaurant->restaurantID = $restaurant['restaurantID'];
-      $thisRestaurant->imageID = $restaurant['imageID'];
-      array_push($restaurants, $thisRestaurant);
-  }
-  return $restaurants;
+  $order = $stmt->fetch();
+  return new Order(
+  $order['orderID'],
+  $order['state'],
+  $order['restaurantID'],
+  $order['dishID'],
+  $order['quantity'],
+  $order['username']);
 }
+
+static function getOrderPrice(PDO $db, int $id) {
+  $stmt = $db->prepare('SELECT dishID, quantity from Orders WHERE orderID = ?');
+  $stmt->execute(array($id));
+
+  $dishes = array();
+  while($dish = $stmt->fetch()){
+    array_push($dishes, array($dish['dishID'], $dish['quantity']));
+  }
+  $sum = 0;
+  foreach($dishes as $dish){
+    $sum += (Dish::getDish(getDatabaseConnection(), $dish[0])->price * $dish[1]);
+  }
+  return $sum;
+}
+
+static function getNumDishes(PDO $db, int $id) {
+  $stmt = $db->prepare('SELECT SUM(quantity) as value_sum FROM Orders WHERE orderID = ?');
+  $stmt->execute(array($id));
+
+  $value = $stmt->fetch();
+  return $value['value_sum'];
+  
+}
+
 
 static function registerOrder(PDO $db, Order $order) {;
   $stmt = $db->prepare('INSERT INTO Orders VALUES(?,?,?,?,?,?)');

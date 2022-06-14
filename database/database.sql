@@ -55,7 +55,7 @@ CREATE TABLE Orders
     dishID        integer CONSTRAINT fk_order_dish REFERENCES Dish (dishID) ,
     quantity      integer NOT NULL,
     username      NVARCHAR(120) CONSTRAINT fk_order_username REFERENCES User (username),
-    PRIMARY KEY(orderID, restaurantID)
+    PRIMARY KEY(orderID, restaurantID, dishID)
 );
 
 CREATE TABLE Dish
