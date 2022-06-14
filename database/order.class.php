@@ -40,7 +40,7 @@ static function getUserOrders(PDO $db, string $username, string $favourite) {
     group by orderID';
   }
   else{
-    $querry = 'SELECT *
+    $querry = 'SELECT orderID, state, Orders.restaurantID, min(dishID) as min_dish, quantity, Orders.username
     FROM Orders
     INNER JOIN FavouriteRestaurant ON Orders.restaurantID=FavouriteRestaurant.restaurantID
     WHERE Orders.username = ?';

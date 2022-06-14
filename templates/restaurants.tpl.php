@@ -1,9 +1,8 @@
 <?php 
-    session_start();
     include_once('database/connection.db.php');
     include_once('database/restaurant.class.php');
 
-    function output_restaurant_list(){;?>
+    function output_restaurant_list(string $filter){;?>
         <main>
             <div class="restaurantCategory">
                 <h1>Restaurants</h1>
@@ -14,7 +13,7 @@
                         
 
                         foreach($categories as $category){
-                            if($category['kind'] === $_GET['filter']){
+                            if($category['kind'] === $filter){
                                 echo  "<option selected value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
                             }
                             else{
@@ -28,7 +27,7 @@
             </div>
             <ul id="restaurants">
             <?php $restaurantList = Restaurant::getRestaurants(getDatabaseConnection());
-            Restaurant::filterRestaurants($restaurantList, $_GET['filter']);
+            Restaurant::filterRestaurants($restaurantList, $filter);
 
             foreach($restaurantList as $restaurantItem){
                 output_restaurant_item($restaurantItem);

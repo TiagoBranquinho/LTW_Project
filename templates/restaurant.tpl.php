@@ -19,7 +19,6 @@
     <?php };
 
     function output_restaurant_dishes(int $id, string $filter){
-        $_SESSION['restaurantIdDishes'] = $id;
         $dishes= Dish::getRestaurantDishes(getDatabaseConnection(), $id);?>
         <div class="restaurantFilter">
             <h4>Filter by Category:</h4>
@@ -27,7 +26,7 @@
                 <select name="dishCategory">
                     <?php $categories = Dish::getCategories(getDatabaseConnection());
                     foreach($categories as $category){
-                        if($category['kind'] === $_GET['filter']){
+                        if($category['kind'] === $filter){
                             echo  "<option selected value='" . $category['kind'] . "'>" . $category['kind'] . "</option>";
                         }
                         else{
@@ -35,7 +34,7 @@
                         }
                     };?>
                 </select>
-                <?php echo "<input type='hidden' name='id' value='". $_SESSION['restaurantIdDishes'] . "'>";?>
+                <?php echo "<input type='hidden' name='id' value='". $id . "'>";?>
                 <button type='submit'>Filter</button>
             </form>
         </div>
