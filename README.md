@@ -16,11 +16,12 @@
 - [ ] Search Restaurants
 - [x] Order Dishes
 - [x] List My Orders
-- [ ] Mark Restaurant as Favourite
+- [x] Mark Restaurant as Favourite
 - [ ] Mark Dish as Favourite
 - [x] Customer Can Leave a Review
 - [x] Filter Restaurants
 - [x] Restaurant ratings
 
 ## Credentials
-alex/Password123
+alex/Password123 -> Customer
+tiago/Password123 -> Restaurant Owner
