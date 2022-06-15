@@ -3,6 +3,7 @@ include_once ('database/image.class.php');
 function output_restaurant_dish($dish){
     $imagePath = Image::getImage(getDatabaseConnection(),$dish->imageID);
     $imagePath = $imagePath->getPath();
+    $dishPrice = $dish->price - $dish->price*($dish->discount);
     ?>
         <article>
                 <section>
@@ -10,10 +11,8 @@ function output_restaurant_dish($dish){
                     echo "<h4>Category: " . $dish->category . "</h4>";?>
                     <div class="price">
                         <h4>Price: </h4>
-                        <?php echo "<h4 class='value'>" . ($dish->price - $dish->price*($dish->discount)) . "</h4>";?>
-                        <!-- TODO: Calculate dish price with discount-->
+                        <?php echo "<h4 class='value'>" . $dishPrice . "</h4>";?>
                     </div>
-                    <!-- TODO: Dish Discount appear here -->
                 </section>
                 <section>
                     <img src="<?php echo $imagePath ?>" alt="logopic">

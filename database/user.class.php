@@ -24,6 +24,26 @@
         return $pass['password'];
     }
 
+    static function setRestaurantAsFavourite(PDO $db, string $username, int $restaurantID) {
+        $stmt = $db->prepare('INSERT INTO FavouriteRestaurant VALUES(?, ?)');
+        $stmt->execute([$restaurantID,$username]);
+    }
+
+      static function checkIfRestaurantAsFavourite(PDO $db, string $username, int $restaurantID): bool {
+          $stmt = $db->prepare('SELECT * FROM FavouriteRestaurant WHERE restaurantID = ? AND username = ?');
+          $stmt->execute([$restaurantID,$username]);
+
+          if($stmt->fetch()) return true;
+
+          return false;
+      }
+
+
+      static function removeRestaurantAsFavourite(PDO $db, string $username, int $restaurantID) {
+          $stmt = $db->prepare('DELETE FROM FavouriteRestaurant WHERE restaurantID = ? AND username = ?');
+          $stmt->execute([$restaurantID,$username]);
+      }
+
     static function getCustomer(string $username) {
         $db = getDatabaseConnection();
         $stmt = $db->prepare('SELECT username FROM Customer WHERE username = ?');
