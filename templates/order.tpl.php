@@ -1,6 +1,7 @@
 <?php include_once('database/connection.db.php');
     include_once('database/order.class.php');
     include_once('database/restaurant.class.php');
+    include_once ('database/image.class.php');
 function output_order(int $id, string $username){;
     $dishes = Order::getOrderDishes(getDatabaseConnection(), $id, $username);
     $orders = Order::getOrders(getDatabaseConnection(), $id);
@@ -42,7 +43,7 @@ function output_order_dish(int $id, Dish $dish){;?>
                     <?php echo "<h4>Quantity: " . Order::getOrderDishQuantity(getDatabaseConnection(), $id, $dish->dishID) . "</h4>";?>
                 </section>
                 <section>
-                    <img src="https://picsum.photos/120/100" alt="logopic">
+                    <img src="<?php echo Image::getImage(getDatabaseConnection(),$dish->imageID)->getPath()?>" alt="logopic">
                 </section>
             </article>
 <?php }?>
