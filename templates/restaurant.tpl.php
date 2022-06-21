@@ -19,7 +19,8 @@
                     echo "<h3> Rating: " . $rating . "<span class='fa fa-star checked'></span></h3>";?>
                 </div>
                 <img src="<?php echo $imagePath?>" alt="logopic" width="400" height="300">
-                <?php if($isOwner) { ?>
+                <?php if(isset($isOwner)) {
+                    if($isOwner){ ?>
                     <a href="edit_restaurant.php?id=<?php echo $id?>">
                         <button>Edit</button>
                     </a>
@@ -29,7 +30,7 @@
                     <a href="check_orders.php?id=<?php echo $id?>">
                         <button>Check Orders</button>
                     </a>
-                <?php } ?>
+                <?php }} ?>
             </div>
     <?php };
 
@@ -64,7 +65,8 @@
             <?php foreach($dishes as $dish){
                 output_restaurant_dish($dish);
             };?>
-            <?php if (!$isOwner) { ?>
+            <?php if(isset($isOwner)){
+            if (!$isOwner) { ?>
             <div>
                 <div class='price'>
                     <h3>Total: </h3>
@@ -74,7 +76,7 @@
                 <?php echo "<input type='hidden' name='resquestsNr' value='" . sizeof($dishes) . "'>";?>
                 <button type='submit'>Checkout</button>
             </div>
-            <?php } ?>
+            <?php }} ?>
         </form>
     </main>
     <?php };?>

@@ -70,7 +70,8 @@
                 <section id="buttons">
                     <?php echo "<a href='restaurant.php?id=".$restaurant->restaurantID."&filter=All'>Menu</a>";?>
                     <?php echo "<a href='reviews.php?restID=".$restaurant->restaurantID."'>Reviews</a>";?>
-                    <?php if ($_SESSION['customer']) { ?>
+                    <?php if (isset($_SESSION['customer'])){
+                        if($_SESSION['customer']) { ?>
                         <form action="../action_set_restaurant_as_favorite.php" method="POST">
                             <?php if(User::checkIfRestaurantAsFavourite(getDatabaseConnection(),$_SESSION['username'],$restaurant->restaurantID)) { ?>
                                     <input type="number" style="display: none" value="1" name="isFavourite">
@@ -82,7 +83,7 @@
                             <input type="text" style="display: none" value="<?php echo $_SESSION['username'] ?>" name="username">
                             <input type="text" style="display: none" value="<?php echo $restaurant->restaurantID ?>" name="restaurantID">
                         </form>
-                    <?php } ?>
+                    <?php }} ?>
                 </section>
             </article>
         </li>
